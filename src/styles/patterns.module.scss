@@ -8,6 +8,11 @@
   line-height: 15px;
   color: #ffffff;
 }
+button:disabled {
+  background-color: #717374;
+  box-shadow: 0px 0px 11px #717374;
+  cursor: initial;
+}
 
 input {
   background: #ffffff;

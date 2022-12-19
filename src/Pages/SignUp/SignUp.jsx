@@ -1,6 +1,7 @@
-import { async } from "@firebase/util";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
+
 import styles from "./SignUp.module.scss";
 // import patterns from "../../styles/patterns.module.scss";
 export const SignUp = () => {
@@ -8,6 +9,8 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const contextUser = useContext(AuthContext);
+  console.log(contextUser);
   const [error, setError] = useState("");
   const {
     auth,
@@ -100,8 +103,8 @@ export const SignUp = () => {
               placeholder="Confirme sua Senha"
             />
           </label>
-          <button className={styles.btn} type="submit">
-            Cadastrar
+          <button className={styles.btn} type="submit" disabled={loading}>
+            {loading ? "Aguarde..." : "Cadastrar"}
           </button>
           {error && (
             <div className={styles.error}>
