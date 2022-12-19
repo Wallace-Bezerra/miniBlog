@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  color: inherit;
+}
+:root {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+button {
+  font-family: "Be Vietnam Pro", sans-serif;
+  border: none;
+  cursor: pointer;
+}
+
+body {
+  background: #f7f9fa;
+  min-height: 100vh;
+}

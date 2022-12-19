@@ -1,0 +1,46 @@
+.btn {
+  background-color: #057bca;
+  box-shadow: 0px 0px 8px #057bca;
+  border-radius: 10px;
+  padding: 17px 62px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+input {
+  background: #ffffff;
+  border: 2px solid #b5bfc2;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 15px;
+  box-shadow: 0px 0px 11px rgba(181, 191, 194, 0.25);
+  border-radius: 10px;
+  width: 378px;
+  height: 48px;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px 17px;
+  height: 44px;
+  background: #da1f1f;
+  border-radius: 6px;
+  color: #ffffff;
+  filter: drop-shadow(0px 0px 9px #ea4444);
+  position: absolute;
+  bottom: 40px;
+  animation: slide 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes slide {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

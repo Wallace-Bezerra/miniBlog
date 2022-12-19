@@ -1,0 +1,97 @@
+@import "../../styles/patterns.module.scss";
+
+.signUp {
+  margin-top: 70px;
+  margin-bottom: 100px;
+  margin-inline: auto;
+  padding-inline: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 1064px;
+  justify-content: space-between;
+  width: 100%;
+  .title {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 50px;
+    color: #212121;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .subtitle {
+    max-width: 429px;
+    font-weight: 500;
+    margin-bottom: 35px;
+    font-size: 20px;
+    line-height: 29px;
+    color: #757879;
+  }
+  .formSignUp {
+    max-width: 537px;
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      // gap: 30px;
+      label {
+        display: flex;
+        flex-direction: column;
+        span {
+          margin-bottom: 8px;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 15px;
+        }
+        input {
+          padding: 17px 20px;
+          line-height: 15px;
+          &::placeholder {
+            font-weight: 600;
+            font-size: 14px;
+            font-family: "Be Vietnam Pro";
+            color: rgba(0, 0, 0, 0.51);
+          }
+        }
+        & + label {
+          margin-top: 30px;
+        }
+      }
+      button.btn {
+        margin-top: 35px;
+      }
+    }
+  }
+  .imageSignUp {
+    position: relative;
+    .iconBlue {
+      width: 91px;
+      height: 91px;
+      background: rgba(196, 234, 255, 0.66);
+      backdrop-filter: blur(11px);
+      border-radius: 50%;
+      position: absolute;
+      left: -55px;
+      bottom: 122px;
+      img {
+        position: absolute;
+        left: 20%;
+        right: 35.25%;
+        top: 28%;
+        bottom: 64.3%;
+      }
+    }
+    .iconYellow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 104px;
+      height: 104px;
+      background: rgba(18, 18, 14, 0.24);
+      backdrop-filter: blur(3px);
+      border-radius: 50%;
+      position: absolute;
+      bottom: -32px;
+      right: -26px;
+    }
+  }
+}

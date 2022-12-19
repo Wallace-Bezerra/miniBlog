@@ -1,0 +1,29 @@
+.nav {
+  background: #212121;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding-inline: 20px;
+}
+
+.logo {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.listNav {
+  display: flex;
+  gap: 12px;
+  color: white;
+}
+.listNav li a {
+  padding: 8px 12px;
+  transition: 0.4s;
+}
+
+.listNav li .active {
+  background: #057bca;
+  border-radius: 4.86222px;
+}
