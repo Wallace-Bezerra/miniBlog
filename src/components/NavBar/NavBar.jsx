@@ -1,6 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { useAuthValue } from "../../context/AuthContext";
+import { useAuthentication } from "../../hooks/useAuthentication";
 import styles from "./NavBar.module.css";
 export const NavBar = () => {
+  const { logout } = useAuthentication();
+  const { user } = useAuthValue();
   return (
     <nav className={styles.nav}>
       <div className={styles.logo}>
@@ -25,22 +29,57 @@ export const NavBar = () => {
             Sobre
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/login"
-            className={({ isActive }) => (isActive ? styles.active : null)}
-          >
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/signup"
-            className={({ isActive }) => (isActive ? styles.active : null)}
-          >
-            Cadastrar
-          </NavLink>
-        </li>
+        {!user && (
+          <>
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? styles.active : null)}
+              >
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/signup"
+                className={({ isActive }) => (isActive ? styles.active : null)}
+              >
+                Cadastrar
+              </NavLink>
+            </li>
+          </>
+        )}
+        {user && (
+          <>
+            <li>
+              <NavLink
+                to="/dashboard"
+                className={({ isActive }) => (isActive ? styles.active : null)}
+              >
+                Dashboard
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/posts/create"
+                className={({ isActive }) => (isActive ? styles.active : null)}
+              >
+                Novo Post
+              </NavLink>
+            </li>
+          </>
+        )}
+        {user && (
+          <li>
+            <Link
+              onClick={() => {
+                logout();
+              }}
+            >
+              Sair
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

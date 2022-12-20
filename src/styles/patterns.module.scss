@@ -37,8 +37,7 @@ input {
   border-radius: 6px;
   color: #ffffff;
   filter: drop-shadow(0px 0px 9px #ea4444);
-  position: absolute;
-  bottom: 40px;
+  margin-top: 30px;
   animation: slide 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 @keyframes slide {
@@ -47,5 +46,70 @@ input {
   }
   100% {
     transform: translateX(0px);
+  }
+}
+
+.signUp,
+.login {
+  margin-top: 70px;
+  margin-bottom: 100px;
+  margin-inline: auto;
+  padding-inline: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 1064px;
+  justify-content: space-between;
+  width: 100%;
+  .title {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 50px;
+    color: #212121;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .subtitle {
+    max-width: 505px;
+    font-weight: 500;
+    margin-bottom: 35px;
+    font-size: 22px;
+    line-height: 32px;
+    color: #757879;
+  }
+  .formSignUp,
+  .formLogin {
+    max-width: 537px;
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      // gap: 30px;
+      label {
+        display: flex;
+        flex-direction: column;
+        span {
+          margin-bottom: 8px;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 15px;
+        }
+        input {
+          padding: 17px 20px;
+          line-height: 15px;
+          &::placeholder {
+            font-weight: 600;
+            font-size: 14px;
+            font-family: "Be Vietnam Pro";
+            color: rgba(0, 0, 0, 0.51);
+          }
+        }
+        & + label {
+          margin-top: 30px;
+        }
+      }
+      button.btn {
+        margin-top: 35px;
+      }
+    }
   }
 }

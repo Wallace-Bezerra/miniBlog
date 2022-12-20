@@ -13,6 +13,8 @@ import { NotFound } from "./Pages/NotFound/NotFound";
 import { NavBar } from "./components/NavBar/NavBar";
 import { Footer } from "./components/Footer/Footer";
 import { AuthProvider } from "./context/AuthContext";
+import { Dashboard } from "./Pages/Dashboard/Dashboard";
+import { CreatePost } from "./Pages/CreatePost/CreatePost";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -22,6 +24,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user);
+      console.log(user);
     });
   }, [auth]);
 
@@ -39,8 +42,23 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
+            <Route
+              path="/login"
+              element={!user ? <Login /> : <Navigate to="/" />}
+            ></Route>
+            <Route
+              path="/signup"
+              element={!user ? <SignUp /> : <Navigate to="/" />}
+            ></Route>
+            <Route
+              path="/dashboard"
+              element={user ? <Dashboard /> : <Navigate to="/login" />}
+            ></Route>
+            <Route
+              path="/posts/create"
+              element={user ? <CreatePost /> : <Navigate to="/login" />}
+            ></Route>
+
             <Route path="/*" element={<NotFound />}></Route>
           </Routes>
           <Footer />

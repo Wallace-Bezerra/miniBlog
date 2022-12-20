@@ -1,4 +1,5 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
@@ -9,8 +10,8 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const contextUser = useContext(AuthContext);
-  console.log(contextUser);
+  const Navigate = useNavigate();
+
   const [error, setError] = useState("");
   const {
     auth,
@@ -37,6 +38,10 @@ export const SignUp = () => {
     console.log(user);
 
     const response = await createUser(user);
+    if (response) {
+      alert("Cadastrado!");
+      Navigate("/dashboard");
+    }
     console.log(response);
   };
   // console.log(patterns);

@@ -17,6 +17,7 @@ export const useAuthentication = () => {
   const [cancelled, setCancelled] = useState(false);
 
   useEffect(() => {
+    //cleanUp
     return () => {
       setCancelled(true);
     };
@@ -29,6 +30,7 @@ export const useAuthentication = () => {
     }
   }
 
+  //signUp
   const createUser = async (data) => {
     checkIfIsCancelled();
     setLoading(true);
@@ -50,16 +52,60 @@ export const useAuthentication = () => {
 
       let systemErrorMessage;
       if (error.message.includes("Password")) {
-        systemErrorMessage = "A senha precisa conter pelo menos 6 caracteres.";
+        systemErrorMessage = "A senha precisa conter pelo menos 6 caracteres";
       } else if (error.message.includes("email-already")) {
-        systemErrorMessage = "Este email já está cadastrado.";
+        systemErrorMessage = "Este email já está cadastrado";
       } else {
-        systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde.";
+        systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde";
       }
       setError(systemErrorMessage);
     } finally {
       setLoading(false);
     }
   };
-  return { auth, createUser, error, setError, loading };
+
+  //logout
+
+  const logout = () => {
+    checkIfIsCancelled();
+    signOut(auth);
+  };
+
+  //login
+  const login = async (data) => {
+    checkIfIsCancelled();
+    setError("");
+    setLoading(true);
+    try {
+      const { user } = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      return user;
+    } catch (error) {
+      let systemErrorMessage = error.message;
+      // wrong-password
+      // user-not-found
+      if (error.message.includes("user-not-found")) {
+        systemErrorMessage = "Usuário não encontrado";
+      } else if (error.message.includes("wrong-password")) {
+        systemErrorMessage = "Senha incorreta";
+      } else {
+        systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde";
+      }
+      setError(systemErrorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+  return {
+    auth,
+    createUser,
+    logout,
+    login,
+    error,
+    setError,
+    loading,
+  };
 };

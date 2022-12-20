@@ -1,0 +1,32 @@
+@import "../../styles/patterns.module.scss";
+
+.login {
+  .subtitle {
+    max-width: 380px;
+    font-size: 22px;
+  }
+  .singUpLink {
+    margin-top: 40px;
+    max-width: 429px;
+    p {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 33px;
+      letter-spacing: 0.0607778px;
+      color: #757879;
+    }
+    a {
+      color: #5d14d3;
+      font-weight: 500;
+      margin-left: 10px;
+      cursor: pointer;
+      &:hover {
+        color: #7337d3;
+      }
+    }
+  }
+  // .error {
+  //   bottom: 314px;
+  //   left: 352px;
+  // }
+}
