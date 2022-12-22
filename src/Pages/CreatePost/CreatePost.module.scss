@@ -1,0 +1,22 @@
+@import "../../styles/patterns.module.scss";
+
+.createPost {
+  justify-content: center;
+  form {
+    max-width: 495px;
+    width: 100%;
+    label {
+      width: 100%;
+      input {
+        width: 100%;
+      }
+      textarea {
+        width: 100%;
+        resize: none;
+      }
+    }
+    .btn {
+      align-self: flex-end;
+    }
+  }
+}

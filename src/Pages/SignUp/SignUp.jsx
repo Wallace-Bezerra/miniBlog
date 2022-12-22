@@ -10,7 +10,7 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
   const {
@@ -40,7 +40,6 @@ export const SignUp = () => {
     const response = await createUser(user);
     if (response) {
       alert("Cadastrado!");
-      Navigate("/dashboard");
     }
     console.log(response);
   };
@@ -113,13 +112,13 @@ export const SignUp = () => {
           </button>
           {error && (
             <div className={styles.error}>
-              <img src="./alert-octagon.svg" alt="icone de alerta" />
+              <img src="/alert-octagon.svg" alt="icone de alerta" />
               <span>{error}</span>
             </div>
           )}
           {authError && (
             <div className={styles.error}>
-              <img src="./alert-octagon.svg" alt="icone de alerta" />
+              <img src="/alert-octagon.svg" alt="icone de alerta" />
               <span>{authError}</span>
             </div>
           )}
@@ -128,10 +127,10 @@ export const SignUp = () => {
       <div className={styles.imageSignUp}>
         <img src="/imageSignUp.jpg" alt="" />
         <div className={styles.iconBlue}>
-          <img src="./Icon_blue.svg" alt="" />
+          <img src="/Icon_blue.svg" alt="" />
         </div>
         <div className={styles.iconYellow}>
-          <img src="./Icon_yellow.svg" alt="" />
+          <img src="/Icon_yellow.svg" alt="" />
         </div>
       </div>
     </section>

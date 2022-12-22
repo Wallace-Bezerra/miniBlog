@@ -26,8 +26,17 @@ function App() {
       setUser(user);
       console.log(user);
     });
-  }, [auth]);
+    if (user) {
+      console.log("usuario ativo", user.auth.currentUser.displayName);
+      document.title = user.auth.currentUser.displayName;
+    }
 
+    return () => {
+      document.title = "MiniBlog";
+    };
+  }, [auth, user]);
+
+  // useEffect(() => {}, [user]);
   // console.log(user);
 
   if (loadingUser) {

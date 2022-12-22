@@ -25,6 +25,25 @@ input {
   width: 378px;
   height: 48px;
 }
+textarea {
+  background: #ffffff;
+  border: 2px solid #b5bfc2;
+  box-shadow: 0px 0px 7px rgba(181, 191, 194, 0.25);
+  border-radius: 10px;
+  padding: 24px 20px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 15px;
+  // font-family: "Be Vietnam Pro";
+  font-family: Arial, Helvetica, sans-serif;
+  &::placeholder {
+    font-family: "Be Vietnam Pro";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    color: #6e7c92;
+  }
+}
 
 .error {
   display: flex;
@@ -50,7 +69,8 @@ input {
 }
 
 .signUp,
-.login {
+.login,
+.createPost {
   margin-top: 70px;
   margin-bottom: 100px;
   margin-inline: auto;
@@ -77,7 +97,8 @@ input {
     color: #757879;
   }
   .formSignUp,
-  .formLogin {
+  .formLogin,
+  .formCreatePost {
     max-width: 537px;
     form {
       display: flex;
@@ -100,7 +121,7 @@ input {
             font-weight: 600;
             font-size: 14px;
             font-family: "Be Vietnam Pro";
-            color: rgba(0, 0, 0, 0.51);
+            color: #6e7c92;
           }
         }
         & + label {
