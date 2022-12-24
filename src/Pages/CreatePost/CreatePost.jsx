@@ -77,7 +77,7 @@ export const CreatePost = () => {
             />
           </label>
           <label>
-            <span>image</span>
+            <span>Imagem</span>
             <input
               type="text"
               name="image"

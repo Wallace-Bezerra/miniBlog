@@ -5,15 +5,16 @@
   list-style: none;
   text-decoration: none;
   color: inherit;
+  font-family: "Be Vietnam Pro";
 }
 :root {
-  font-family: "Be Vietnam Pro", sans-serif;
+  // font-family: "Be Vietnam Pro", sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 }
 button {
-  font-family: "Be Vietnam Pro", sans-serif;
+  // font-family: "Be Vietnam Pro", sans-serif;
   border: none;
   cursor: pointer;
 }
@@ -21,4 +22,5 @@ button {
 body {
   background: #f7f9fa;
   min-height: 100vh;
+  // overflow: overlay;
 }
