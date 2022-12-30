@@ -1,0 +1,33 @@
+<svg width="525" height="451" viewBox="0 0 525 451" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Box">
+<rect id="Rectangle 64" width="181.093" height="222.68" transform="matrix(0.94693 -0.321439 0 1 93.1626 116.562)" fill="#6D919E"/>
+<rect id="Rectangle 62" width="181.802" height="222.082" transform="matrix(0.94693 0.321439 0.00820296 0.999966 91.4482 116.314)" fill="#ACBFC7"/>
+<rect id="Rectangle 65" width="181.802" height="222.082" transform="matrix(0.94693 0.321439 0.00820296 0.999966 263.602 58.7218)" fill="#88A5B0"/>
+<path id="Rectangle 63" d="M263.5 175L436.128 117.129V338.888L265 397L263.5 175Z" fill="#88A5B0"/>
+<rect id="Rectangle 66" width="179.344" height="107.268" transform="matrix(0.945482 0.325675 -0.874674 0.484711 93.8242 116.174)" fill="#CDD9DD"/>
+<rect id="Rectangle 67" width="182.917" height="99.9534" transform="matrix(0.942618 0.333874 -0.878851 0.477097 350.775 10.7065)" fill="#CDD9DD"/>
+<rect id="Rectangle 68" width="182.571" height="100.715" transform="matrix(0.948752 -0.316021 0.82828 0.560314 262.653 174.767)" fill="#CDD9DD"/>
+<rect id="Rectangle 69" width="180.49" height="106.216" transform="matrix(0.945511 -0.325589 0.833898 0.551919 5.70117 58.7657)" fill="#CDD9DD"/>
+<g id="cara">
+<rect id="Rectangle 70" x="313.378" y="96.0304" width="47.3838" height="14.6307" rx="5" transform="rotate(17.7598 313.378 96.0304)" fill="white"/>
+<circle id="Ellipse 97" r="9.58565" transform="matrix(0.969231 -0.246153 -0.00820296 0.999966 392.449 255.451)" fill="#456E7B"/>
+<circle id="Ellipse 98" r="9.58565" transform="matrix(0.969231 -0.246153 -0.00820296 0.999966 308.118 276.868)" fill="#456E7B"/>
+<path id="Vector 11" d="M378.396 309.388C378.521 277.358 335.225 288.219 335.101 319.964" stroke="#456E7B" stroke-width="2"/>
+</g>
+<g id="Lupa">
+<path id="Vector 10" d="M470.476 380.735L464.071 372.729L454.464 380.735C456.866 383.137 461.509 387.941 460.869 387.941C460.228 387.941 458.467 390.343 459.268 392.745L468.875 403.953L489.691 427.171C495.028 434.11 506.504 448.307 509.706 449.588C512.729 450.797 515.039 451.864 517.982 449.96C517.78 450.055 517.946 449.872 518.513 449.588C518.334 449.723 518.156 449.846 517.982 449.96C518.349 449.785 519.932 448.686 522.516 445.585C526.738 440.519 523.317 437.579 522.516 435.978L499.298 407.156C491.826 398.883 476.561 382.016 475.28 380.735C473.999 379.454 471.544 380.202 470.476 380.735Z" fill="#89A5B0"/>
+<g id="Ellipse 95" filter="url(#filter0_b_144_149)">
+<circle cx="432.846" cy="335.1" r="50.4387" fill="#E2E6E9" fill-opacity="0.21"/>
+<circle cx="432.846" cy="335.1" r="46.9387" stroke="#C3CED2" stroke-width="7"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_b_144_149" x="378.407" y="280.661" width="108.877" height="108.878" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="2"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_144_149"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_144_149" result="shape"/>
+</filter>
+</defs>
+</svg>

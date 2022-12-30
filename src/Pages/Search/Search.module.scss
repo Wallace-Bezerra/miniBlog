@@ -1,0 +1,46 @@
+@import "../../styles/patterns.module.scss";
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  .resultSearch {
+    margin-top: 60px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    a {
+      display: flex;
+      padding: 2px;
+    }
+    h1 {
+      padding-block: 12px;
+
+      span {
+        color: #9a5de7;
+      }
+    }
+  }
+
+  .notFoundSearch {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    p {
+      max-width: 399px;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 131%;
+      letter-spacing: 0.0607778px;
+      color: #010101;
+      margin-bottom: 18px;
+    }
+    .btn {
+      background-color: #212121;
+      box-shadow: none;
+      padding: 14px 32px;
+    }
+  }
+}

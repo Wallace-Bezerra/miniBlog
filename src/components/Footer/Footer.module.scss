@@ -1,11 +1,17 @@
 footer {
   background: #212121;
-  height: 100px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  p {
-    padding-left: 82px;
-    color: rgba(255, 255, 255, 0.72);
+  .footerContent {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    p {
+      padding-right: 20px;
+      color: rgba(255, 255, 255, 0.72);
+      text-align: right;
+    }
   }
 }

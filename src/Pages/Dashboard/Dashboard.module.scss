@@ -1,0 +1,46 @@
+@import "../../styles/patterns.module.scss";
+
+.dashboard {
+  height: 100%;
+  padding-block: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .dashboardNoPosts {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 170px;
+    h1 {
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 15px;
+      margin-bottom: 30px;
+    }
+    p {
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 28px;
+      letter-spacing: 0.0607778px;
+      color: #757879;
+      max-width: 340px;
+      margin-bottom: 30px;
+    }
+    .btn {
+      padding: 14px 20px;
+    }
+  }
+  .PostDashboardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    // background-color: red;
+  }
+}

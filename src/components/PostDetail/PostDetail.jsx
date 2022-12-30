@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "./PostCard.module.scss";
+import styles from "./PostDetail.module.scss";
 
-export const PostCard = ({
+export const PostDetail = ({
   CreatedDate,
   CreatedBy,
   content,
@@ -11,7 +11,7 @@ export const PostCard = ({
   id,
 }) => {
   return (
-    <div className={styles.postCard}>
+    <div className={styles.postDetail}>
       <div className={styles.topPost}>
         <div className={styles.userInfoPost}>
           <span className={styles.userNamePost}>{CreatedBy} </span>
@@ -33,16 +33,13 @@ export const PostCard = ({
       </div>
       <div className={styles.footerPost}>
         <div className={styles.tagsPost}>
-          <p>Tags</p>
+          <p>Tags relacionadas a este post</p>
           <div className={styles.tagContentPost}>
             {arrayTags.map((tag) => {
               return <span key={`${id} ${tag}`}># {tag}</span>;
             })}
           </div>
         </div>
-        <Link to={`/posts/${id}`}>
-          <button className={`${styles.btn} ${styles.view}`}>Ver</button>
-        </Link>
       </div>
     </div>
   );

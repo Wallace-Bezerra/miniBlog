@@ -1,12 +1,16 @@
 .btn {
-  background-color: #057bca;
-  box-shadow: 0px 0px 8px #057bca;
+  background-color: #0f9af7;
+  box-shadow: 0px 0px 8px #0f9af7b0;
   border-radius: 10px;
-  padding: 17px 62px;
+  padding: 17px 42px;
   font-weight: 500;
   font-size: 20px;
   line-height: 15px;
   color: #ffffff;
+  transition: all 0.5s ease;
+  &:hover {
+    filter: brightness(1.1);
+  }
   &.view {
     border-radius: 5px;
     padding: 4px 21px;
@@ -86,7 +90,7 @@ textarea {
   padding-inline: 20px;
   display: flex;
   align-items: center;
-  max-width: 1064px;
+  max-width: 1280px;
   justify-content: space-between;
   width: 100%;
   .title {

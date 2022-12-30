@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { useAuthentication } from "./hooks/useAuthentication";
+import "./styles/App.css";
 
 import { Home } from "./Pages/Home/Home";
 import { About } from "./Pages/About/About";
@@ -15,7 +16,8 @@ import { Footer } from "./components/Footer/Footer";
 import { AuthProvider } from "./context/AuthContext";
 import { Dashboard } from "./Pages/Dashboard/Dashboard";
 import { CreatePost } from "./Pages/CreatePost/CreatePost";
-
+import { Search } from "./Pages/Search/Search";
+import { Post } from "./Pages/Post/Post";
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
@@ -36,9 +38,6 @@ function App() {
     };
   }, [auth, user]);
 
-  // useEffect(() => {}, [user]);
-  // console.log(user);
-
   if (loadingUser) {
     return <p>Carregando...</p>;
   }
@@ -51,6 +50,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
+            <Route path="/search" element={<Search />}></Route>
+            <Route path="/posts/:id" element={<Post />}></Route>
             <Route
               path="/login"
               element={!user ? <Login /> : <Navigate to="/" />}

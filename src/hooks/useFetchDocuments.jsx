@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  orderBy,
+  onSnapshot,
+  where,
+  QuerySnapshot,
+} from "firebase/firestore";
 
-export const useFetchDocument = (docCollection, id) => {
-  const [document, setDocument] = useState();
+export const useFetchDocuments = (docCollection, search = null, uid = null) => {
+  const [documents, setDocuments] = useState();
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
 
@@ -76,32 +83,56 @@ export const useFetchDocument = (docCollection, id) => {
       if (cancelled) return;
       setLoading(true);
       setError(false);
-
+      const collectionRef = await collection(db, docCollection);
       try {
-        const docRef = await doc(db, docCollection, id);
-        const docSnap = await getDoc(docRef);
+        let q;
+        // busca de dados
+        if (search) {
+          q = await query(
+            collectionRef,
+            where("arrayTags", "array-contains", search),
+            orderBy("CreatedAt", "desc")
+          );
+        } else if (uid) {
+          q = await query(
+            collectionRef,
+            where("uid", "==", uid),
+            orderBy("CreatedAt", "desc")
+          );
+        } else {
+          q = await query(collectionRef, orderBy("CreatedAt", "desc"));
+        }
 
-        const { formatedDate, formatedDateHours, dateDifference } =
-          getDateAndHours(docSnap.data().CreatedAt.toDate());
+        // manipulação de data
 
-        setDocument({
-          id: docSnap.id,
-          createdDate: {
-            formatedDate,
-            formatedDateHours,
-            dateDifference,
-          },
-          ...docSnap.data(),
+        await onSnapshot(q, (querySnapshot) => {
+          setDocuments(
+            querySnapshot.docs.map((doc) => {
+              const { formatedDate, formatedDateHours, dateDifference } =
+                getDateAndHours(doc.data().CreatedAt.toDate());
+
+              return {
+                id: doc.id,
+                createdDate: {
+                  formatedDate,
+                  formatedDateHours,
+                  dateDifference,
+                },
+                ...doc.data(),
+              };
+            })
+          );
         });
       } catch (error) {
+        console.log(error.message);
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
+    console.log("Uid", documents);
     loadData();
-    console.log(document);
-  }, [docCollection, id, cancelled]);
+  }, [docCollection, search, uid, cancelled]);
 
   //cleanUp
   useEffect(() => {
@@ -110,5 +141,5 @@ export const useFetchDocument = (docCollection, id) => {
     };
   });
 
-  return { document, error, loading };
+  return { documents, error, loading };
 };
