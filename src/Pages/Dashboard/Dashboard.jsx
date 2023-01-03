@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // hooks
 import { useAuthValue } from "../../context/AuthContext";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
+import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import { PostDashboard } from "../../components/PostDashboard/PostDashboard";
 
 export const Dashboard = () => {
@@ -14,6 +15,7 @@ export const Dashboard = () => {
     error,
     loading,
   } = useFetchDocuments("posts", null, uid);
+  const { deleteDocument, response } = useDeleteDocument("posts");
   // const posts = [];
   console.log(uid);
   return (
@@ -23,7 +25,7 @@ export const Dashboard = () => {
           <h1>Gerencie seus Posts</h1>
           <div className={styles.PostDashboardContent}>
             {posts.map((post) => {
-              return <PostDashboard title={post.title} image={post.image} id={post.id}/>;
+              return <PostDashboard title={post.title} image={post.image} id={post.id} deleteDocument={deleteDocument} />
             })}
           </div>
         </>

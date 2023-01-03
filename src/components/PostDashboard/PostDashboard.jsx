@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./PostDashboard.module.scss";
 
-export const PostDashboard = ({ title, image, id }) => {
+export const PostDashboard = ({ title, image, id, deleteDocument }) => {
   return (
     <div className={styles.PostDashboard}>
       <div className={styles.ContentData}>
@@ -11,12 +11,12 @@ export const PostDashboard = ({ title, image, id }) => {
         </div>
 
         <div className={styles.buttonActions}>
-          <a href="">
+          <Link>
             <img src="./Icon-edit.svg" alt="" />
-          </a>
-          <a href="">
+          </Link>
+          <Link onClick={() => { deleteDocument(id) }}>
             <img src="./Icon-delete.svg" alt="" />
-          </a>
+          </Link>
         </div>
       </div>
 
