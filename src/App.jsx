@@ -16,8 +16,10 @@ import { Footer } from "./components/Footer/Footer";
 import { AuthProvider } from "./context/AuthContext";
 import { Dashboard } from "./Pages/Dashboard/Dashboard";
 import { CreatePost } from "./Pages/CreatePost/CreatePost";
+import { EditPost } from "./Pages/EditPost/EditPost";
 import { Search } from "./Pages/Search/Search";
 import { Post } from "./Pages/Post/Post";
+
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
@@ -67,6 +69,10 @@ function App() {
             <Route
               path="/posts/create"
               element={user ? <CreatePost /> : <Navigate to="/login" />}
+            ></Route>
+            <Route
+              path="/posts/edit/:id"
+              element={user ? <EditPost /> : <Navigate to="/login" />}
             ></Route>
 
             <Route path="/*" element={<NotFound />}></Route>

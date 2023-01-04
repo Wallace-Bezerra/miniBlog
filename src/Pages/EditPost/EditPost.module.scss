@@ -1,0 +1,44 @@
+@import "../../styles/patterns.module.scss";
+
+.editPost {
+  justify-content: center;
+  .formEditPost {
+    max-width: 100%;
+    width: 100%;
+    form {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+
+      .inputs {
+        max-width: 495px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        label {
+          width: 100%;
+          input {
+            width: 100%;
+          }
+          textarea {
+            width: 100%;
+            resize: none;
+          }
+        }
+        .btn {
+          align-self: flex-end;
+        }
+      }
+      .previewImage {
+        img {
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+          max-width: 496px;
+          height: 600px;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}

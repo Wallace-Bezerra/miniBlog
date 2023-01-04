@@ -83,7 +83,8 @@ textarea {
 
 .signUp,
 .login,
-.createPost {
+.createPost,
+.editPost {
   margin-top: 70px;
   margin-bottom: 100px;
   margin-inline: auto;
@@ -111,7 +112,8 @@ textarea {
   }
   .formSignUp,
   .formLogin,
-  .formCreatePost {
+  .formCreatePost,
+  .formEditPost {
     max-width: 537px;
     form {
       display: flex;

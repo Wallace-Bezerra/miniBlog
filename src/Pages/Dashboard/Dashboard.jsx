@@ -25,7 +25,7 @@ export const Dashboard = () => {
           <h1>Gerencie seus Posts</h1>
           <div className={styles.PostDashboardContent}>
             {posts.map((post) => {
-              return <PostDashboard title={post.title} image={post.image} id={post.id} deleteDocument={deleteDocument} />
+              return <PostDashboard title={post.title} image={post.image} id={post.id} deleteDocument={deleteDocument}/>
             })}
           </div>
         </>

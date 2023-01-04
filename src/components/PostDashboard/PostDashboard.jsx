@@ -11,10 +11,14 @@ export const PostDashboard = ({ title, image, id, deleteDocument }) => {
         </div>
 
         <div className={styles.buttonActions}>
-          <Link>
+          <Link to={`/posts/edit/${id}`}>
             <img src="./Icon-edit.svg" alt="" />
           </Link>
-          <Link onClick={() => { deleteDocument(id) }}>
+          <Link
+            onClick={() => {
+              deleteDocument(id);
+            }}
+          >
             <img src="./Icon-delete.svg" alt="" />
           </Link>
         </div>
