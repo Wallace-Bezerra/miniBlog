@@ -3,8 +3,9 @@ import styles from "./EditPost.module.scss";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
-import { useInsertDocument } from "../../hooks/useInsertDocument";
+
 import { useFetchDocument } from "../../hooks/useFetchDocument";
+import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 
 export const EditPost = () => {
   const [title, setTitle] = useState("");
@@ -22,7 +23,7 @@ export const EditPost = () => {
     loading,
     error: errorPost,
   } = useFetchDocument("posts", id);
-  console.log(post);
+  // console.log(post);
 
   useEffect(() => {
     if (post) {
@@ -32,9 +33,9 @@ export const EditPost = () => {
       const arrayString = post.arrayTags.join(", ");
       setTags(arrayString);
     }
-  });
+  }, [post]);
 
-  const { insertDocument, response } = useInsertDocument("posts");
+  const { updateDocument, response } = useUpdateDocument("posts");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,17 +62,17 @@ export const EditPost = () => {
     }
 
     //redirect home page
-    navigate("/");
+    navigate("/dashboard");
 
-    console.log(response);
-    insertDocument({
+    // console.log(response);
+    updateDocument({
       title,
       image,
       arrayTags,
       content,
       uid: user.uid,
       createdBy: user.displayName,
-    });
+    }, id);
   };
   return (
     <section className={styles.editPost}>

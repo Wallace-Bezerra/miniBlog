@@ -11,7 +11,7 @@ export const Post = () => {
   return (
     <div>
       {loading && <p>LOADING.........</p>}
-      <h1>Post</h1>
+      {/* <h1>Post</h1> */}
       {post && (
         <PostDetail
           key={post.id}
