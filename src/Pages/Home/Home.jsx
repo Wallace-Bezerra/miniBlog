@@ -1,5 +1,5 @@
 import styles from "./Home.module.scss";
-
+import { motion, AnimatePresence } from "framer-motion";
 // hooks
 import { useNavigate, Link } from "react-router-dom";
 
@@ -22,39 +22,47 @@ export const Home = () => {
   };
   console.log(posts);
   return (
-    <div className={styles.home}>
-      <div className={styles.topArea}>
-        <h1>Veja os últimos posts da comunidade</h1>
-        <form onSubmit={handleSubmit} className={styles.search}>
-          <input
-            type="text"
-            value={search}
-            placeholder="Busque por tags"
-            onChange={(e) => {
-              setSearch(e.target.value);
-            }}
-          />
-          <button>
-            <img src="/icon-search.svg" alt="" />
-          </button>
-        </form>
-      </div>
-      {posts &&
-        posts.map((post) => {
-          // console.log(post.CreatedAt.toDate());
-          return (
-            <PostCard
-              key={post.id}
-              id={post.id}
-              CreatedDate={post.createdDate}
-              CreatedBy={post.createdBy}
-              title={post.title}
-              content={post.content}
-              image={post.image}
-              arrayTags={post.arrayTags}
+    <AnimatePresence>
+      <motion.section
+        className={styles.home}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5, damping: 5 }}
+      >
+        <div className={styles.topArea}>
+          <h1>Veja os últimos posts da comunidade</h1>
+          <form onSubmit={handleSubmit} className={styles.search}>
+            <input
+              type="text"
+              value={search}
+              placeholder="Busque por tags"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
             />
-          );
-        })}
-    </div>
+            <button>
+              <img src="/icon-search.svg" alt="" />
+            </button>
+          </form>
+        </div>
+        {posts &&
+          posts.map((post) => {
+            // console.log(post.CreatedAt.toDate());
+            return (
+              <PostCard
+                key={post.id}
+                id={post.id}
+                CreatedDate={post.createdDate}
+                CreatedBy={post.createdBy}
+                title={post.title}
+                content={post.content}
+                image={post.image}
+                arrayTags={post.arrayTags}
+              />
+            );
+          })}
+      </motion.section>
+    </AnimatePresence>
   );
 };
