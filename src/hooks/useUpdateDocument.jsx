@@ -49,29 +49,31 @@ export const useUpdateDocument = (docCollection) => {
         checkCancelBeforeDispatch({
             type: "LOADING",
         });
+        setTimeout(async () => {
+            try {
+                const docRef = await doc(db, docCollection, id)
+                const updatedDocument = await updateDoc(docRef, data)
+                //   const newDocument = { ...document, CreatedAt: Timestamp.now() };
+                //   const insertedDocument = await addDoc(
+                //     collection(db, docCollection),
+                //     newDocument
+                //   );
 
-        try {
-            const docRef = await doc(db, docCollection, id)
-            const updatedDocument = await updateDoc(docRef, data)
-            //   const newDocument = { ...document, CreatedAt: Timestamp.now() };
-            //   const insertedDocument = await addDoc(
-            //     collection(db, docCollection),
-            //     newDocument
-            //   );
+                //despachar ação de UPDATE
+                checkCancelBeforeDispatch({
+                    type: "UPDATED_DOC",
+                    payload: updatedDocument,
+                });
 
-            //despachar ação de UPDATE
-            checkCancelBeforeDispatch({
-                type: "UPDATED_DOC",
-                payload: updatedDocument,
-            });
+            } catch (error) {
+                //despachar ação de ERROR
+                checkCancelBeforeDispatch({
+                    type: "ERROR",
+                    payload: error.message,
+                });
+            }
+        }, 1000);
 
-        } catch (error) {
-            //despachar ação de ERROR
-            checkCancelBeforeDispatch({
-                type: "ERROR",
-                payload: error.message,
-            });
-        }
     };
 
     return { updateDocument, response };

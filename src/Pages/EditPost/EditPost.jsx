@@ -45,34 +45,34 @@ export const EditPost = () => {
 
     try {
       new URL(image);
+      // criar array de tags
+
+      const arrayTags = tags.split(",").map((tag) => {
+        return tag.trim().toLowerCase();
+      });
+
+      // console.log(response);
+      updateDocument({
+        title,
+        image,
+        arrayTags,
+        content,
+        uid: user.uid,
+        createdBy: user.displayName,
+      }, id);
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1000)
     } catch (error) {
       setError("A imagem precisa ser uma url");
       return;
     }
-
-    // criar array de tags
-
-    const arrayTags = tags.split(",").map((tag) => {
-      return tag.trim().toLowerCase();
-    });
-
     // checar campos
     if (!title || !image || !tags || !content) {
       setError("Insira os todos os dados");
     }
 
-    //redirect home page
-    navigate("/dashboard");
-
-    // console.log(response);
-    updateDocument({
-      title,
-      image,
-      arrayTags,
-      content,
-      uid: user.uid,
-      createdBy: user.displayName,
-    }, id);
   };
   return (
     <section className={styles.editPost}>
@@ -102,7 +102,7 @@ export const EditPost = () => {
               <input
                 type="text"
                 name="image"
-                // style={{ border: error ? "solid 2px #f32222" : null }}
+                style={{ border: error ? "solid 2px #f32222" : null }}
                 value={image}
                 onChange={(e) => {
                   setImage(e.target.value);
@@ -139,6 +139,18 @@ export const EditPost = () => {
                 placeholder="Escreva seu conteúdo aqui !"
               ></textarea>
             </label>
+            {response.error && (
+              <div className={styles.error}>
+                <img src="/alert-octagon.svg" alt="icone de alerta" />
+                <span>{response.error}</span>
+              </div>
+            )}
+            {error && (
+              <div className={styles.error}>
+                <img src="/alert-octagon.svg" alt="icone de alerta" />
+                <span>{error}</span>
+              </div>
+            )}
             <button
               className={styles.btn}
               type="submit"
@@ -147,18 +159,7 @@ export const EditPost = () => {
               {response.loading ? "Aguarde..." : "Editar"}
             </button>
           </div>
-          {response.error && (
-            <div className={styles.error}>
-              <img src="/alert-octagon.svg" alt="icone de alerta" />
-              <span>{response.error}</span>
-            </div>
-          )}
-          {error && (
-            <div className={styles.error}>
-              <img src="/alert-octagon.svg" alt="icone de alerta" />
-              <span>{error}</span>
-            </div>
-          )}
+
           <div>
             <label>
               <span>Visualização da Imagem atual</span>
