@@ -19,7 +19,6 @@ export const Dashboard = () => {
   console.log(uid);
   return (
     <div className={styles.dashboard}>
-      {loading && <p>LOADING ................</p>}
       {posts && posts.length > 0 && (
         <>
           <h1>Gerencie seus Posts</h1>

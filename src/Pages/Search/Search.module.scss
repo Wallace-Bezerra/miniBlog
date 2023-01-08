@@ -11,6 +11,7 @@
     display: flex;
     gap: 20px;
     align-items: center;
+    color: #fff;
     a {
       display: flex;
       padding: 2px;
@@ -19,7 +20,7 @@
       padding-block: 12px;
 
       span {
-        color: #9a5de7;
+        color: #867ad6;
       }
     }
   }
@@ -28,13 +29,20 @@
     display: flex;
     align-items: center;
     gap: 50px;
+    h1 {
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 131%;
+      letter-spacing: 0.0607778px;
+      color: #867ad6;
+    }
     p {
       max-width: 399px;
       font-weight: 700;
       font-size: 36px;
       line-height: 131%;
       letter-spacing: 0.0607778px;
-      color: #010101;
+      color: #dbdbdb;
       margin-bottom: 18px;
     }
     .btn {

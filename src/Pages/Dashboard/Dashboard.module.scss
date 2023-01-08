@@ -1,6 +1,7 @@
 @import "../../styles/patterns.module.scss";
 
 .dashboard {
+  background-color: #404258;
   height: 100%;
   padding-block: 50px;
   display: flex;
@@ -9,7 +10,12 @@
   gap: 20px;
   h1 {
     text-align: center;
-    margin-bottom: 60px;
+    margin-block: 60px;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 15px;
+    letter-spacing: 0.0607778px;
+    color: white;
   }
   .dashboardNoPosts {
     display: flex;

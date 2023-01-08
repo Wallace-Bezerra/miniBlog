@@ -7,21 +7,22 @@
   }
   .singUpLink {
     margin-top: 40px;
-    max-width: 429px;
+    max-width: 480px;
     p {
       font-weight: 500;
       font-size: 20px;
-      line-height: 33px;
+      line-height: 31px;
       letter-spacing: 0.0607778px;
-      color: #757879;
+      color: #fff;
     }
     a {
-      color: #5d14d3;
+      color: #1ea8f6;
       font-weight: 500;
       margin-left: 10px;
       cursor: pointer;
+      transition: all 0.4s;
       &:hover {
-        color: #7337d3;
+        color: #57bafc;
       }
     }
   }

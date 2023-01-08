@@ -18,8 +18,6 @@ export const Post = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3, damping: 5 }}
       >
-        {loading && <p>LOADING.........</p>}
-        {/* <h1>Post</h1> */}
         {post && (
           <PostDetail
             key={post.id}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Login.module.scss";
 
 export const Login = () => {
@@ -37,76 +38,85 @@ export const Login = () => {
     console.log("login", response);
   };
   return (
-    <section className={styles.login}>
-      <div className={styles.formLogin}>
-        <h1 className={styles.title}>Acessar minha conta </h1>
-        <p className={styles.subtitle}>
-          Basta realizar o login com seu email e senha.
-        </p>
-        <form onSubmit={handleSubmit}>
-          <label>
-            <span>Email</span>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              required
-              placeholder="Digite seu Email"
-            />
-          </label>
-          <label>
-            <span>Senha</span>
-            <input
-              type="password"
-              name="password"
-              style={{ border: error ? "solid 2px #f32222" : null }}
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              required
-              placeholder="Digite uma Senha"
-            />
-          </label>
-          <button className={styles.btn} type="submit" disabled={loading}>
-            {loading ? "Aguarde..." : "Entrar"}
-          </button>
-          {/* <button className={styles.btn} type="submit" disabled={loading}>
+    <AnimatePresence>
+      <motion.section
+        className={styles.login}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5, damping: 5 }}
+      >
+        <div className={styles.formLogin}>
+          <h1 className={styles.title}>Acessar minha conta </h1>
+          <p className={styles.subtitle}>
+            Basta realizar o login com seu email e senha.
+          </p>
+          <form onSubmit={handleSubmit}>
+            <label>
+              <span>Email</span>
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                required
+                placeholder="Digite seu Email"
+              />
+            </label>
+            <label>
+              <span>Senha</span>
+              <input
+                type="password"
+                name="password"
+                style={{ border: error ? "solid 2px #f32222" : null }}
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                required
+                placeholder="Digite uma Senha"
+              />
+            </label>
+            <button className={styles.btn} type="submit" disabled={loading}>
+              {loading ? "Aguarde..." : "Entrar"}
+            </button>
+            {/* <button className={styles.btn} type="submit" disabled={loading}>
             {loading ? "Aguarde..." : "Cadastrar"}
           </button> */}
-          {error && (
-            <div className={styles.error}>
-              <img src="/alert-octagon.svg" alt="icone de alerta" />
-              <span>{error}</span>
-            </div>
-          )}
-          {authError && (
-            <div className={styles.error}>
-              <img src="/alert-octagon.svg" alt="icone de alerta" />
-              <span>{authError}</span>
-            </div>
-          )}
+            {error && (
+              <div className={styles.error}>
+                <img src="/alert-octagon.svg" alt="icone de alerta" />
+                <span>{error}</span>
+              </div>
+            )}
+            {authError && (
+              <div className={styles.error}>
+                <img src="/alert-octagon.svg" alt="icone de alerta" />
+                <span>{authError}</span>
+              </div>
+            )}
 
-          <div className={styles.singUpLink}>
-            <p>
-              Caso ainda não tenha uma conta conosco, é possível se cadastrar
-              <Link to="/signup">Clicando aqui.</Link>
-            </p>
-          </div>
-        </form>
-      </div>
-      <div className={styles.imageSignUp}>
-        <img src="/imageSignUp.jpg" alt="" />
-        {/* <div className={styles.iconBlue}>
-          <img src="./Icon_blue.svg" alt="" />
+            <div className={styles.singUpLink}>
+              <p>
+                Caso ainda não tenha uma conta conosco, é possível se cadastrar
+                <Link to="/signup">Clicando aqui.</Link>
+              </p>
+            </div>
+          </form>
         </div>
-        <div className={styles.iconYellow}>
-          <img src="./Icon_yellow.svg" alt="" />
-        </div> */}
-      </div>
-    </section>
+        <motion.div
+          className={styles.imageSignUp}
+          animate={{
+            opacity: 1,
+            y: [-10, 10, -10],
+            transition: { type: "spring", duration: 5, repeat: Infinity },
+          }}
+        >
+          <img src="/Login-mockup.png" alt="" />
+        </motion.div>
+      </motion.section>
+    </AnimatePresence>
   );
 };

@@ -14,7 +14,11 @@ export const PostDashboard = ({ title, image, id, deleteDocument }) => {
           opacity: 1,
           transition: { duration: 0.6 },
         }}
-        exit={{ opacity: 0, type: "spring", transition: { duration: 0.4 } }}
+        exit={{
+          opacity: 0,
+          type: "spring",
+          transition: { duration: 0.2 },
+        }}
         // transition={{ duration: 0.4, damping: 5 }}
       >
         <div className={styles.ContentData}>
