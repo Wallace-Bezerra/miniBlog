@@ -26,6 +26,27 @@
       }
     }
   }
+  .imageLogin {
+    position: relative;
+    width: 499px;
+    height: 575px;
+    img {
+      width: 100%;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+      top: 200px;
+      left: 50px;
+      width: 400px;
+      height: 400px;
+      background: #5f627e;
+      border-radius: 50%;
+      filter: blur(199px);
+      z-index: -1;
+    }
+  }
   // .error {
   //   bottom: 314px;
   //   left: 352px;

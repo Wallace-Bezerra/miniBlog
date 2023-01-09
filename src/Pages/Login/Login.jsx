@@ -107,7 +107,7 @@ export const Login = () => {
           </form>
         </div>
         <motion.div
-          className={styles.imageSignUp}
+          className={styles.imageLogin}
           animate={{
             opacity: 1,
             y: [-10, 10, -10],

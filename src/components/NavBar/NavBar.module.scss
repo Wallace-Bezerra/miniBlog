@@ -1,5 +1,7 @@
 header {
   background: #343541;
+  position: relative;
+  z-index: 1;
 }
 
 .nav {
@@ -29,6 +31,6 @@ header {
 }
 
 .listNav li .active {
-  background: #7579E7;
+  background: #7579e7;
   border-radius: 4.86222px;
 }

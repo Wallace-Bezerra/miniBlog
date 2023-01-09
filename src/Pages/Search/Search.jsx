@@ -75,7 +75,7 @@ export const Search = () => {
               return (
                 <PostCard
                   key={post.id}
-                  uid={post.id}
+                  id={post.id}
                   CreatedDate={post.createdDate}
                   CreatedBy={post.createdBy}
                   title={post.title}

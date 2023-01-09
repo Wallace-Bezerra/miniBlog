@@ -2,6 +2,25 @@
 
 .imageSignUp {
   position: relative;
+  width: 685.9px;
+  height: 665.17px;
+  img {
+    width: 100%;
+    // height: 100%;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 200px;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    background: #5f627e;
+    border-radius: 50%;
+    filter: blur(199px);
+    z-index: -1;
+  }
   .iconBlue {
     width: 91px;
     height: 91px;
