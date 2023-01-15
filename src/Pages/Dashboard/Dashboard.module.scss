@@ -1,6 +1,7 @@
 @import "../../styles/patterns.module.scss";
 
 .dashboard {
+  min-height: 780px;
   background-color: #404258;
   height: 100%;
   padding-block: 50px;
@@ -20,7 +21,9 @@
   .dashboardNoPosts {
     display: flex;
     justify-content: space-between;
-    padding-inline: 170px;
+    padding-inline: 20px;
+    width: 100%;
+    max-width: 1280px;
     h1 {
       font-weight: 500;
       font-size: 36px;
@@ -32,7 +35,7 @@
       font-size: 22px;
       line-height: 28px;
       letter-spacing: 0.0607778px;
-      color: #757879;
+      color: #dbdbdb;
       max-width: 340px;
       margin-bottom: 30px;
     }

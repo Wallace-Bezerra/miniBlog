@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import styles from "./PostDashboard.module.scss";
+import styles from "./PostAbout.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
 
-export const PostDashboard = ({ title, image, id, deleteDocument }) => {
+export const PostAbout = ({ title, image, id, link }) => {
   return (
     <AnimatePresence>
       <motion.div
@@ -22,12 +22,12 @@ export const PostDashboard = ({ title, image, id, deleteDocument }) => {
       >
         <div className={styles.ContentData}>
           <div className={styles.title}>
-            <p>Titulo</p>
+            <p>Tecnologia usada</p>
             <h2>{title}</h2>
           </div>
 
           <div className={styles.buttonActions}>
-            <Link to={`/posts/edit/${id}`}>
+            <Link to={"/dashboard"}>
               <motion.img
                 src="./Icon-edit.svg"
                 alt=""
@@ -37,11 +37,7 @@ export const PostDashboard = ({ title, image, id, deleteDocument }) => {
                 }}
               />
             </Link>
-            <Link
-              onClick={() => {
-                deleteDocument(id);
-              }}
-            >
+            <Link to={"/dashboard"}>
               <motion.img
                 src="./Icon-delete.svg"
                 alt=""
@@ -55,14 +51,14 @@ export const PostDashboard = ({ title, image, id, deleteDocument }) => {
         </div>
 
         <div className={styles.image}>
-          <Link to={`/posts/${id}`}>
+          <a href={link} target="_blank">
             <motion.img
               src={image}
               alt=""
               initial={{ opacity: 0, transition: { duration: 0.4 } }}
               animate={{ opacity: 1, transition: { duration: 0.4 } }}
             />
-          </Link>
+          </a>
         </div>
       </motion.div>
     </AnimatePresence>

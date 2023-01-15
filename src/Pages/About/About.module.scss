@@ -1,0 +1,54 @@
+.about {
+  display: grid;
+  max-width: 1280px;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  padding-inline: 20px;
+  justify-items: space-between;
+  .title {
+    margin-bottom: 50px;
+    h1 {
+      color: white;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 46px;
+    }
+    p {
+      color: #dbdbdb;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 118.5%;
+    }
+  }
+}
+.aboutPosts {
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+}
+.imageAbout {
+  position: relative;
+  grid-row: 1/3;
+  grid-column: 2;
+  width: 491px;
+  height: 665px;
+  justify-self: end;
+  img {
+    width: 100%;
+  }
+  .iconGit {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 150px;
+    height: 150px;
+  }
+  .iconLinkedin {
+    position: absolute;
+    left: 40px;
+    bottom: 20px;
+    width: 150px;
+    height: 150px;
+  }
+}
