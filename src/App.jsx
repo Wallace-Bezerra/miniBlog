@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { useAuthentication } from "./hooks/useAuthentication";
+import styles from "./styles/main.module.scss";
 import "./styles/App.css";
 
 import { Home } from "./Pages/Home/Home";
@@ -41,11 +42,11 @@ function App() {
   }, [auth, user]);
 
   if (loadingUser) {
-    return <p>Carregando...</p>;
+    // return <img className="loading" src="./loading.svg" alt="loading..." />;
   }
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <AuthProvider value={{ user }}>
         <BrowserRouter>
           <NavBar />

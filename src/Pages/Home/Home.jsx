@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // hooks
 import { useNavigate, Link } from "react-router-dom";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PostCard } from "../../components/PostCard/PostCard";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { doc } from "firebase/firestore";
@@ -20,7 +20,10 @@ export const Home = () => {
       return navigate(`/search?q=${search}`);
     }
   };
-  console.log(posts);
+
+  useEffect(() => {
+    console.log(loading);
+  }, [loading]);
   return (
     <AnimatePresence>
       <motion.section
@@ -62,6 +65,9 @@ export const Home = () => {
               />
             );
           })}
+        {loading && (
+          <img className="loading" src="./loading.svg" alt="loading..." />
+        )}
       </motion.section>
     </AnimatePresence>
   );

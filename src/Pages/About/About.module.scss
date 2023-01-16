@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .about {
   display: grid;
   max-width: 1280px;
@@ -21,34 +23,48 @@
       line-height: 118.5%;
     }
   }
-}
-.aboutPosts {
-  display: flex;
-  flex-direction: column;
-  gap: 65px;
-}
-.imageAbout {
-  position: relative;
-  grid-row: 1/3;
-  grid-column: 2;
-  width: 491px;
-  height: 665px;
-  justify-self: end;
-  img {
-    width: 100%;
+  .aboutPosts {
+    display: flex;
+    flex-direction: column;
+    gap: 65px;
   }
-  .iconGit {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    width: 150px;
-    height: 150px;
+  .imageAbout {
+    position: relative;
+    grid-row: 1/3;
+    grid-column: 2;
+    max-width: 491px;
+    height: 665px;
+    justify-self: end;
+    img {
+      width: 100%;
+    }
+    .iconGit {
+      position: absolute;
+      right: 0px;
+      bottom: -58px;
+      width: 150px;
+      height: 150px;
+    }
+    .iconLinkedin {
+      position: absolute;
+      left: 40px;
+      bottom: -39px;
+      width: 150px;
+      height: 150px;
+    }
   }
-  .iconLinkedin {
-    position: absolute;
-    left: 40px;
-    bottom: 20px;
-    width: 150px;
-    height: 150px;
+  @include responsive(1080px) {
+    grid-template-columns: 1fr;
+    margin-bottom: 80px;
+    .title {
+      max-width: 572px;
+      line-height: 30px;
+    }
+    .imageAbout {
+      grid-column: initial;
+      grid-row: 3/3;
+      justify-self: center;
+      margin-top: 50px;
+    }
   }
 }

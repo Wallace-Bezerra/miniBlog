@@ -8,12 +8,16 @@ import {
   where,
   QuerySnapshot,
 } from "firebase/firestore";
+import { async } from "@firebase/util";
 
 export const useFetchDocuments = (docCollection, search = null, uid = null) => {
   const [documents, setDocuments] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
+  useEffect(() => {
+    console.log(loading, "usefetch");
+  }, [loading]);
   const [cancelled, setCancelled] = useState(false);
 
   const getDateAndHours = (dateDoc) => {
@@ -80,8 +84,8 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
 
   useEffect(() => {
     const loadData = async () => {
-      if (cancelled) return;
       setLoading(true);
+      // if (cancelled) return;
       setError(false);
       const collectionRef = await collection(db, docCollection);
       try {
@@ -106,30 +110,34 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         // manipulação de data
 
         await onSnapshot(q, (querySnapshot) => {
-          setDocuments(
-            querySnapshot.docs.map((doc) => {
-              const { formatedDate, formatedDateHours, dateDifference } =
-                getDateAndHours(doc.data().CreatedAt.toDate());
+            setDocuments(
+              querySnapshot.docs.map((doc) => {
+                const { formatedDate, formatedDateHours, dateDifference } =
+                  getDateAndHours(doc.data().CreatedAt.toDate());
 
-              return {
-                id: doc.id,
-                createdDate: {
-                  formatedDate,
-                  formatedDateHours,
-                  dateDifference,
-                },
-                ...doc.data(),
-              };
-            })
-          );
+                return {
+                  id: doc.id,
+                  createdDate: {
+                    formatedDate,
+                    formatedDateHours,
+                    dateDifference,
+                  },
+                  ...doc.data(),
+                };
+              })
+            );
         });
       } catch (error) {
         console.log(error.message);
         setError(error.message);
       } finally {
         setLoading(false);
+        // setTimeout(() => {
+        //   setLoading(false);
+        // }, 3000);
       }
     };
+
     console.log("Uid", documents);
     loadData();
   }, [docCollection, search, uid, cancelled]);

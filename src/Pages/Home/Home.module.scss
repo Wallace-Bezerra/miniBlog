@@ -51,4 +51,10 @@
       }
     }
   }
+  .loading {
+    position: absolute;
+    left: calc(50% - 80px);
+    top: calc(50% - 80px);
+    width: 160px;
+  }
 }

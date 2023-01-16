@@ -25,3 +25,11 @@ body {
   min-height: 100vh;
   // overflow: overlay;
 }
+.App {
+  min-height: 100vh;
+  gap: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+

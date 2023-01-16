@@ -1,36 +1,78 @@
+@import "../../styles/mixins.scss";
+
 header {
   background: #343541;
   position: relative;
   z-index: 1;
-}
-
-.nav {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-  padding-inline: 20px;
-}
-
-.logo {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 22px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.listNav {
-  display: flex;
-  gap: 12px;
-  color: white;
-}
-.listNav li a {
-  padding: 8px 12px;
-  transition: 0.4s;
-}
-
-.listNav li .active {
-  background: #7579e7;
-  border-radius: 4.86222px;
+  .nav {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding-inline: 20px;
+  }
+  .logo {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .listNav {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    color: white;
+    li {
+      a {
+        padding: 8px 12px;
+        transition: 0.4s;
+      }
+      .active {
+        background: #7579e7;
+        border-radius: 4.86222px;
+      }
+    }
+    &.active {
+      flex-direction: column;
+      padding: 20px 16px;
+      align-items: flex-start;
+      justify-content: center;
+      position: absolute;
+      background-color: red;
+      top: 60px;
+      opacity: 1;
+      right: 15px;
+      pointer-events: all;
+      background: #565d78;
+      border-radius: 8px;
+      &::after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        width: 8px;
+        height: 8px;
+        background: #565d78;
+        transform: rotate(45deg);
+        right: 18px;
+      }
+    }
+  }
+  .mobile {
+    display: none;
+    img {
+      cursor: pointer;
+    }
+  }
+  @include responsive(1080px) {
+    .listNav {
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+    .mobile {
+      display: flex;
+    }
+  }
 }

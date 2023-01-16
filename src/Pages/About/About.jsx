@@ -26,10 +26,13 @@ export const About = () => {
             }}
           />
         </a>
-        <a href="https://github.com/Wallace-Bezerra" target="_blank">
+        <a
+          href="https://github.com/Wallace-Bezerra"
+          target="_blank"
+          className={style.iconGit}
+        >
           <motion.img
             src="./GitHub.svg"
-            className={style.iconGit}
             alt="Icone GitHub"
             whileHover={{
               scale: 1.1,

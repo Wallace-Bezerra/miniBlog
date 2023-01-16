@@ -39,8 +39,8 @@
       display: block;
       top: 200px;
       left: 50px;
-      width: 400px;
-      height: 400px;
+      max-width: 400px;
+      max-height: 400px;
       background: #5f627e;
       border-radius: 50%;
       filter: blur(199px);

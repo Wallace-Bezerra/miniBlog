@@ -1,10 +1,38 @@
+import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import styles from "./NavBar.module.scss";
+
 export const NavBar = () => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
   const { logout } = useAuthentication();
   const { user } = useAuthValue();
+  useEffect(() => {
+    console.log(menuIsOpen);
+  }, [menuIsOpen]);
+
+  useEffect(() => {
+    // let mediaQuery = window.matchMedia("(min-width: 1080px)");
+    window.addEventListener("resize", updateScreen);
+
+    function updateScreen() {
+      // console.log("resized to: ", window.innerWidth);
+      if (window.innerWidth > 1080) {
+        setMenuIsOpen(false);
+      }
+    }
+    return () => {
+      window.removeEventListener("resize", updateScreen);
+    };
+
+    // console.log(mediaQuery);
+    // if (mediaQuery) {
+    //   setMenuIsOpen(false);
+    // }
+  }, [window.innerWidth]);
+
   return (
     <header>
       <nav className={styles.nav}>
@@ -13,7 +41,7 @@ export const NavBar = () => {
             Mini<span>Blog</span>
           </Link>
         </div>
-        <ul className={styles.listNav}>
+        <ul className={`${styles.listNav} ${menuIsOpen ? styles.active : ""}`}>
           <li>
             <NavLink
               to="/"
@@ -91,6 +119,18 @@ export const NavBar = () => {
             </li>
           )}
         </ul>
+        {console.log(styles)}
+        {/* <div className={`${styles.mobile} ${!isOpen ? styles.active : null}`}>
+          <img */}
+        <div className={styles.mobile}>
+          <img
+            src="./Icon-mobile.svg"
+            alt=""
+            onClick={() => {
+              setMenuIsOpen(!menuIsOpen);
+            }}
+          />
+        </div>
       </nav>
     </header>
   );
