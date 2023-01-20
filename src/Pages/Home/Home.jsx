@@ -6,9 +6,12 @@ import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { PostCard } from "../../components/PostCard/PostCard";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
+// import { MenuContext } from "../../context/MenuContext";
+import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
 import { doc } from "firebase/firestore";
 
 export const Home = () => {
+  const { menu } = useMenuIsOpen();
   const [search, setSearch] = useState(null);
   const navigate = useNavigate();
   const { documents: posts, error, loading } = useFetchDocuments("posts");
@@ -24,6 +27,11 @@ export const Home = () => {
   useEffect(() => {
     console.log(loading);
   }, [loading]);
+
+  const handleChange = (e) => {
+    menu.setMenuIsOpen(false);
+    setSearch(e.target.value);
+  }
   return (
     <AnimatePresence>
       <motion.section
@@ -44,8 +52,9 @@ export const Home = () => {
               type="text"
               value={search}
               placeholder="Busque por tags"
-              onChange={(e) => {
-                setSearch(e.target.value);
+              onChange={handleChange}
+              onFocus={() => {
+                menu.setMenuIsOpen(false);
               }}
             />
             <button>

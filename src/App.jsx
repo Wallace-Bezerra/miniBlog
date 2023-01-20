@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { useAuthentication } from "./hooks/useAuthentication";
+import { useContext } from "react";
 import styles from "./styles/main.module.scss";
 
 
@@ -21,10 +22,13 @@ import { EditPost } from "./Pages/EditPost/EditPost";
 import { Search } from "./Pages/Search/Search";
 import { Post } from "./Pages/Post/Post";
 import { Loading } from "./components/Loading/Loading";
+import { MenuProvider } from "./context/MenuContext";
 
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
+
+
   const loadingUser = user === undefined;
 
   useEffect(() => {
@@ -50,43 +54,44 @@ function App() {
   return (
     <div className={styles.App}>
       <AuthProvider value={{ user }}>
-        <BrowserRouter>
-          <NavBar />
-          {loadingUser ? <Loading /> :
-            <>
-              <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/about" element={<About />}></Route>
-                <Route path="/search" element={<Search />}></Route>
-                <Route path="/posts/:id" element={<Post />}></Route>
-                <Route
-                  path="/login"
-                  element={!user ? <Login /> : <Navigate to="/" />}
-                ></Route>
-                <Route
-                  path="/signup"
-                  element={!user ? <SignUp /> : <Navigate to="/" />}
-                ></Route>
-                <Route
-                  path="/dashboard"
-                  element={user ? <Dashboard /> : <Navigate to="/login" />}
-                ></Route>
-                <Route
-                  path="/posts/create"
-                  element={user ? <CreatePost /> : <Navigate to="/login" />}
-                ></Route>
-                <Route
-                  path="/posts/edit/:id"
-                  element={user ? <EditPost /> : <Navigate to="/login" />}
-                ></Route>
+        <MenuProvider>
+          <BrowserRouter>
+            <NavBar />
+            {loadingUser ? <Loading /> :
+              <>
+                <Routes>
+                  <Route path="/" element={<Home />}></Route>
+                  <Route path="/about" element={<About />}></Route>
+                  <Route path="/search" element={<Search />}></Route>
+                  <Route path="/posts/:id" element={<Post />}></Route>
+                  <Route
+                    path="/login"
+                    element={!user ? <Login /> : <Navigate to="/" />}
+                  ></Route>
+                  <Route
+                    path="/signup"
+                    element={!user ? <SignUp /> : <Navigate to="/" />}
+                  ></Route>
+                  <Route
+                    path="/dashboard"
+                    element={user ? <Dashboard /> : <Navigate to="/login" />}
+                  ></Route>
+                  <Route
+                    path="/posts/create"
+                    element={user ? <CreatePost /> : <Navigate to="/login" />}
+                  ></Route>
+                  <Route
+                    path="/posts/edit/:id"
+                    element={user ? <EditPost /> : <Navigate to="/login" />}
+                  ></Route>
 
-                <Route path="/*" element={<NotFound />}></Route>
-              </Routes>
-              <Footer />
-            </>
-          }
-        </BrowserRouter>
-
+                  <Route path="/*" element={<NotFound />}></Route>
+                </Routes>
+                <Footer />
+              </>
+            }
+          </BrowserRouter>
+        </MenuProvider>
       </AuthProvider>
     </div>
   );

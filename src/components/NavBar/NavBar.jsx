@@ -4,15 +4,17 @@ import { useAuthValue } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./NavBar.module.scss";
+import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
 
 export const NavBar = () => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const { menu } = useMenuIsOpen();
+  // const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const { logout } = useAuthentication();
   const { user } = useAuthValue();
   useEffect(() => {
-    console.log(menuIsOpen);
-  }, [menuIsOpen]);
+    console.log(menu.menuIsOpen);
+  }, [menu.menuIsOpen]);
 
   useEffect(() => {
     // let mediaQuery = window.matchMedia("(min-width: 1080px)");
@@ -21,7 +23,7 @@ export const NavBar = () => {
     function updateScreen() {
       // console.log("resized to: ", window.innerWidth);
       if (window.innerWidth > 1080) {
-        setMenuIsOpen(false);
+        menu.setMenuIsOpen(false);
       }
     }
     return () => {
@@ -59,7 +61,7 @@ export const NavBar = () => {
           </Link>
         </div>
         <AnimatePresence>
-          <motion.ul className={`${styles.listNav} ${menuIsOpen ? styles.active : ""}`}
+          <motion.ul className={`${styles.listNav} ${menu.menuIsOpen ? styles.active : ""}`}
             // variants={listVariant}
             initial={false}
             key="menu"
@@ -151,7 +153,7 @@ export const NavBar = () => {
             src="./Icon-mobile.svg"
             alt=""
             onClick={() => {
-              setMenuIsOpen(!menuIsOpen);
+              menu.setMenuIsOpen(!menu.menuIsOpen);
             }}
           />
         </div>
