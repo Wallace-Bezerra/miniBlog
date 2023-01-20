@@ -33,7 +33,11 @@ export const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, damping: 5 }}
       >
-        <div className={styles.topArea}>
+        <motion.div className={styles.topArea}
+          initial={{ opacity: 0, x: 25 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+        >
           <h1>Veja os últimos posts da comunidade</h1>
           <form onSubmit={handleSubmit} className={styles.search}>
             <input
@@ -48,7 +52,7 @@ export const Home = () => {
               <img src="/icon-search.svg" alt="" />
             </button>
           </form>
-        </div>
+        </motion.div>
         {posts &&
           posts.map((post) => {
             // console.log(post.CreatedAt.toDate());
@@ -69,6 +73,6 @@ export const Home = () => {
           <img className="loading" src="./loading.svg" alt="loading..." />
         )}
       </motion.section>
-    </AnimatePresence>
+    </AnimatePresence >
   );
 };

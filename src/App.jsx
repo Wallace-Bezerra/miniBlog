@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { useAuthentication } from "./hooks/useAuthentication";
 import styles from "./styles/main.module.scss";
-import "./styles/App.css";
+
 
 import { Home } from "./Pages/Home/Home";
 import { About } from "./Pages/About/About";
@@ -20,6 +20,7 @@ import { CreatePost } from "./Pages/CreatePost/CreatePost";
 import { EditPost } from "./Pages/EditPost/EditPost";
 import { Search } from "./Pages/Search/Search";
 import { Post } from "./Pages/Post/Post";
+import { Loading } from "./components/Loading/Loading";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -41,45 +42,51 @@ function App() {
     };
   }, [auth, user]);
 
-  if (loadingUser) {
-    // return <img className="loading" src="./loading.svg" alt="loading..." />;
-  }
+  // if (!loadingUser) {
+  //   return <img className="loading" src="./loading.svg" alt="loading..." />;
+  // }
+
 
   return (
     <div className={styles.App}>
       <AuthProvider value={{ user }}>
         <BrowserRouter>
           <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/search" element={<Search />}></Route>
-            <Route path="/posts/:id" element={<Post />}></Route>
-            <Route
-              path="/login"
-              element={!user ? <Login /> : <Navigate to="/" />}
-            ></Route>
-            <Route
-              path="/signup"
-              element={!user ? <SignUp /> : <Navigate to="/" />}
-            ></Route>
-            <Route
-              path="/dashboard"
-              element={user ? <Dashboard /> : <Navigate to="/login" />}
-            ></Route>
-            <Route
-              path="/posts/create"
-              element={user ? <CreatePost /> : <Navigate to="/login" />}
-            ></Route>
-            <Route
-              path="/posts/edit/:id"
-              element={user ? <EditPost /> : <Navigate to="/login" />}
-            ></Route>
+          {loadingUser ? <Loading /> :
+            <>
+              <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/about" element={<About />}></Route>
+                <Route path="/search" element={<Search />}></Route>
+                <Route path="/posts/:id" element={<Post />}></Route>
+                <Route
+                  path="/login"
+                  element={!user ? <Login /> : <Navigate to="/" />}
+                ></Route>
+                <Route
+                  path="/signup"
+                  element={!user ? <SignUp /> : <Navigate to="/" />}
+                ></Route>
+                <Route
+                  path="/dashboard"
+                  element={user ? <Dashboard /> : <Navigate to="/login" />}
+                ></Route>
+                <Route
+                  path="/posts/create"
+                  element={user ? <CreatePost /> : <Navigate to="/login" />}
+                ></Route>
+                <Route
+                  path="/posts/edit/:id"
+                  element={user ? <EditPost /> : <Navigate to="/login" />}
+                ></Route>
 
-            <Route path="/*" element={<NotFound />}></Route>
-          </Routes>
-          <Footer />
+                <Route path="/*" element={<NotFound />}></Route>
+              </Routes>
+              <Footer />
+            </>
+          }
         </BrowserRouter>
+
       </AuthProvider>
     </div>
   );

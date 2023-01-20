@@ -71,14 +71,14 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
       dateDifference = Math.floor(differenceInHours) + " h";
     } else if (differenceInDays < 7) {
       dateDifference = Math.floor(differenceInDays) + " d";
-    } else if (differenceInWeeks < 3) {
+    } else if (differenceInWeeks < 4) {
       dateDifference = Math.floor(differenceInWeeks) + " sem";
     } else if (differenceInMonths < 12 && differenceInMonths > 0) {
       dateDifference = Math.floor(differenceInMonths) + " m";
     } else {
       dateDifference = Math.floor(differenceInYears) + " a";
     }
-
+    console.log(dateDifference, differenceInMonths);
     return { formatedDate, formatedDateHours, dateDifference };
   };
 
@@ -110,22 +110,22 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         // manipulação de data
 
         await onSnapshot(q, (querySnapshot) => {
-            setDocuments(
-              querySnapshot.docs.map((doc) => {
-                const { formatedDate, formatedDateHours, dateDifference } =
-                  getDateAndHours(doc.data().CreatedAt.toDate());
+          setDocuments(
+            querySnapshot.docs.map((doc) => {
+              const { formatedDate, formatedDateHours, dateDifference } =
+                getDateAndHours(doc.data().CreatedAt.toDate());
 
-                return {
-                  id: doc.id,
-                  createdDate: {
-                    formatedDate,
-                    formatedDateHours,
-                    dateDifference,
-                  },
-                  ...doc.data(),
-                };
-              })
-            );
+              return {
+                id: doc.id,
+                createdDate: {
+                  formatedDate,
+                  formatedDateHours,
+                  dateDifference,
+                },
+                ...doc.data(),
+              };
+            })
+          );
         });
       } catch (error) {
         console.log(error.message);

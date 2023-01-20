@@ -8,9 +8,11 @@
   line-height: 15px;
   color: #ffffff;
   transition: all 0.5s ease;
+
   &:hover {
     filter: brightness(1.1);
   }
+
   &.view {
     border-radius: 5px;
     padding: 5px 24px;
@@ -20,6 +22,7 @@
     box-shadow: none;
   }
 }
+
 button:disabled {
   background-color: #717374;
   box-shadow: 0px 0px 11px #717374;
@@ -35,9 +38,11 @@ input {
   border: 1px solid #d5d5d5;
   border-radius: 8px;
   border-radius: 10px;
-  width: 378px;
+  max-width: 378px;
+  width: 100%;
   height: 48px;
 }
+
 textarea {
   background: #ffffff;
   border: 1px solid #d5d5d5;
@@ -49,6 +54,7 @@ textarea {
   line-height: 150%;
   color: #5a5a5a;
   font-family: "Be Vietnam Pro";
+
   &::placeholder {
     font-family: "Be Vietnam Pro";
     font-weight: 400;
@@ -56,6 +62,7 @@ textarea {
     line-height: 150%;
     color: rgba(0, 0, 0, 0.5);
   }
+
   &:focus-visible {
     outline-color: #7579e7;
   }
@@ -75,10 +82,12 @@ textarea {
   margin-top: 30px;
   animation: slide 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 @keyframes slide {
   0% {
     transform: translateX(-100px);
   }
+
   100% {
     transform: translateX(0px);
   }
@@ -96,6 +105,7 @@ textarea {
   max-width: 1280px;
   justify-content: space-between;
   width: 100%;
+
   .title {
     font-weight: 500;
     font-size: 36px;
@@ -104,6 +114,7 @@ textarea {
     text-transform: uppercase;
     margin-bottom: 24px;
   }
+
   .subtitle {
     max-width: 505px;
     font-weight: 500;
@@ -112,29 +123,38 @@ textarea {
     line-height: 32px;
     color: #dbdbdb;
   }
+
   .formSignUp,
   .formLogin,
   .formCreatePost,
   .formEditPost {
     max-width: 537px;
+
     form {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+
       // gap: 30px;
       label {
         display: flex;
         flex-direction: column;
         color: white;
+        width: 100%;
+
         span {
           margin-bottom: 9px;
           font-weight: 500;
           font-size: 16px;
           line-height: 15px;
         }
+
         input {
           padding: 17px 20px;
           line-height: 15px;
+          width: 100%;
+          max-width: 500px;
+
           &::placeholder {
             font-weight: 500;
             font-size: 15px;
@@ -143,16 +163,20 @@ textarea {
             font-family: "Be Vietnam Pro";
             color: rgba(0, 0, 0, 0.5);
           }
+
           &:focus-visible {
             outline-color: #7579e7;
           }
         }
-        & + label {
+
+        &+label {
           margin-top: 30px;
         }
       }
+
       button.btn {
         margin-top: 35px;
+
         &:focus-visible {
           outline-color: #7579e7;
         }

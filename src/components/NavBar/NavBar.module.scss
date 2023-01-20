@@ -4,6 +4,7 @@ header {
   background: #343541;
   position: relative;
   z-index: 1;
+
   .nav {
     max-width: 1280px;
     margin: 0 auto;
@@ -13,27 +14,32 @@ header {
     height: 70px;
     padding-inline: 20px;
   }
+
   .logo {
     color: rgba(255, 255, 255, 0.72);
     font-size: 22px;
     font-weight: bold;
     text-transform: uppercase;
   }
+
   .listNav {
     position: relative;
     display: flex;
     gap: 12px;
     color: white;
+
     li {
       a {
         padding: 8px 12px;
-        transition: 0.4s;
+        transition: background 0.4s ease;
       }
+
       .active {
         background: #7579e7;
         border-radius: 4.86222px;
       }
     }
+
     &.active {
       flex-direction: column;
       padding: 20px 16px;
@@ -44,9 +50,11 @@ header {
       top: 60px;
       opacity: 1;
       right: 15px;
+      display: flex;
       pointer-events: all;
       background: #565d78;
       border-radius: 8px;
+
       &::after {
         content: "";
         position: absolute;
@@ -59,20 +67,59 @@ header {
       }
     }
   }
+
   .mobile {
     display: none;
+
     img {
       cursor: pointer;
     }
   }
+
   @include responsive(1080px) {
     .listNav {
       opacity: 0;
       pointer-events: none;
       position: absolute;
+      display: none;
+      animation: menu .8s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+      li {
+        a {
+          &.active {
+            background-color: transparent;
+            position: relative;
+            padding-block: 0px;
+
+
+            &::after {
+              content: "";
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              width: 4px;
+              border-radius: 6px;
+              height: 100%;
+              background-color: #7579e7;
+              display: block;
+            }
+          }
+        }
+      }
     }
+
     .mobile {
       display: flex;
+    }
+  }
+
+  @keyframes menu {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
     }
   }
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./NavBar.module.scss";
 
 export const NavBar = () => {
@@ -26,13 +27,29 @@ export const NavBar = () => {
     return () => {
       window.removeEventListener("resize", updateScreen);
     };
-
-    // console.log(mediaQuery);
-    // if (mediaQuery) {
-    //   setMenuIsOpen(false);
-    // }
   }, [window.innerWidth]);
 
+  const listVariant = {
+    open: {
+      clipPath: "inset(0% 0% 0% 0% round 10px)",
+      transition: {
+        type: "spring",
+        bounce: 0,
+        duration: 0.7,
+        delayChildren: 0.05,
+        staggerChildren: 0.05,
+      }
+    },
+    closed: {
+      clipPath: "inset(10% 50% 90% 50% round 30px)",
+      transition: {
+        type: "spring",
+        bounce: 0,
+        duration: 0.6,
+        delay: 0.5,
+      }
+    }
+  }
   return (
     <header>
       <nav className={styles.nav}>
@@ -41,85 +58,92 @@ export const NavBar = () => {
             Mini<span>Blog</span>
           </Link>
         </div>
-        <ul className={`${styles.listNav} ${menuIsOpen ? styles.active : ""}`}>
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) => (isActive ? styles.active : null)}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) => (isActive ? styles.active : null)}
-            >
-              Sobre
-            </NavLink>
-          </li>
-          {!user && (
-            <>
-              <li>
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    isActive ? styles.active : null
-                  }
-                >
-                  Login
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/signup"
-                  className={({ isActive }) =>
-                    isActive ? styles.active : null
-                  }
-                >
-                  Cadastrar
-                </NavLink>
-              </li>
-            </>
-          )}
-          {user && (
-            <>
-              <li>
-                <NavLink
-                  to="/dashboard"
-                  className={({ isActive }) =>
-                    isActive ? styles.active : null
-                  }
-                >
-                  Dashboard
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/posts/create"
-                  className={({ isActive }) =>
-                    isActive ? styles.active : null
-                  }
-                >
-                  Novo Post
-                </NavLink>
-              </li>
-            </>
-          )}
-          {user && (
+        <AnimatePresence>
+          <motion.ul className={`${styles.listNav} ${menuIsOpen ? styles.active : ""}`}
+            // variants={listVariant}
+            initial={false}
+            key="menu"
+            animate={{ opacity: 1, transition: { duration: 0.8 } }}
+            exit={{ opacity: 0 }}
+          >
             <li>
-              <Link
-                to="/login"
-                onClick={() => {
-                  logout();
-                }}
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? styles.active : null)}
               >
-                Sair
-              </Link>
+                Home
+              </NavLink>
             </li>
-          )}
-        </ul>
-        {console.log(styles)}
+            <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) => (isActive ? styles.active : null)}
+              >
+                Sobre
+              </NavLink>
+            </li>
+            {!user && (
+              <>
+                <li>
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      isActive ? styles.active : null
+                    }
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/signup"
+                    className={({ isActive }) =>
+                      isActive ? styles.active : null
+                    }
+                  >
+                    Cadastrar
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {user && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      isActive ? styles.active : null
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/posts/create"
+                    className={({ isActive }) =>
+                      isActive ? styles.active : null
+                    }
+                  >
+                    Novo Post
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {user && (
+              <li>
+                <Link
+                  to="/login"
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  Sair
+                </Link>
+              </li>
+            )}
+          </motion.ul>
+        </AnimatePresence>
         {/* <div className={`${styles.mobile} ${!isOpen ? styles.active : null}`}>
           <img */}
         <div className={styles.mobile}>

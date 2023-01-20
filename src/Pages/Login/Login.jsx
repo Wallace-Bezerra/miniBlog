@@ -99,10 +99,11 @@ export const Login = () => {
             )}
 
             <div className={styles.singUpLink}>
-              <p>
-                Caso ainda não tenha uma conta conosco, é possível se cadastrar
-                <Link to="/signup">Clicando aqui.</Link>
-              </p>
+              <div>
+                <p>Caso ainda não tenha uma conta conosco, é possível se cadastrar
+                  <Link to="/signup"> Clicando aqui.</Link>
+                </p>
+              </div>
             </div>
           </form>
         </div>
