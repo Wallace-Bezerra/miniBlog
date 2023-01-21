@@ -11,7 +11,6 @@
     margin-top: 40px;
     max-width: 480px;
 
-
     p {
       font-weight: 500;
       font-size: 20px;
@@ -65,6 +64,7 @@
   }
 
   @include responsive(600px) {
+    margin-top: 0px;
     .title {
       font-size: 26px;
     }

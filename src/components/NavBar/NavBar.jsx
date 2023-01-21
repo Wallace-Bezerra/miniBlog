@@ -12,9 +12,6 @@ export const NavBar = () => {
 
   const { logout } = useAuthentication();
   const { user } = useAuthValue();
-  useEffect(() => {
-    console.log(menu.menuIsOpen);
-  }, [menu.menuIsOpen]);
 
   useEffect(() => {
     // let mediaQuery = window.matchMedia("(min-width: 1080px)");
@@ -40,7 +37,7 @@ export const NavBar = () => {
         duration: 0.7,
         delayChildren: 0.05,
         staggerChildren: 0.05,
-      }
+      },
     },
     closed: {
       clipPath: "inset(10% 50% 90% 50% round 30px)",
@@ -49,9 +46,9 @@ export const NavBar = () => {
         bounce: 0,
         duration: 0.6,
         delay: 0.5,
-      }
-    }
-  }
+      },
+    },
+  };
   return (
     <header>
       <nav className={styles.nav}>
@@ -61,7 +58,10 @@ export const NavBar = () => {
           </Link>
         </div>
         <AnimatePresence>
-          <motion.ul className={`${styles.listNav} ${menu.menuIsOpen ? styles.active : ""}`}
+          <motion.ul
+            className={`${styles.listNav} ${
+              menu.menuIsOpen ? styles.active : ""
+            }`}
             // variants={listVariant}
             initial={false}
             key="menu"

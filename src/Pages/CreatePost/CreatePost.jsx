@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from "../../hooks/useInsertDocument";
-
+import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
 export const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -12,11 +12,15 @@ export const CreatePost = () => {
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
 
+  const { menu } = useMenuIsOpen();
+
   const navigate = useNavigate();
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("posts");
-
+  const handleMenuIsOpen = () => {
+    menu.setMenuIsOpen(false);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
@@ -58,9 +62,9 @@ export const CreatePost = () => {
     <AnimatePresence>
       <motion.section
         className={styles.createPost}
-        initial={{ opacity: 0,}}
-        animate={{ opacity: 1, }}
-        exit={{ opacity: 0,}}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         transition={{ duration: 0.3, damping: 5 }}
       >
         <div className={styles.formCreatePost}>
@@ -79,6 +83,7 @@ export const CreatePost = () => {
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
+                onFocus={handleMenuIsOpen}
                 required
                 placeholder="Adicionar titulo"
               />
@@ -93,6 +98,7 @@ export const CreatePost = () => {
                 onChange={(e) => {
                   setImage(e.target.value);
                 }}
+                onFocus={handleMenuIsOpen}
                 required
                 placeholder="Adicionar imagem"
               />
@@ -107,6 +113,7 @@ export const CreatePost = () => {
                 onChange={(e) => {
                   setTags(e.target.value);
                 }}
+                onFocus={handleMenuIsOpen}
                 required
                 placeholder="Adicione tags"
               />
@@ -132,6 +139,7 @@ export const CreatePost = () => {
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
+                onFocus={handleMenuIsOpen}
                 required
                 placeholder="Escreva seu conteúdo aqui !"
               ></textarea>

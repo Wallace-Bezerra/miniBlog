@@ -10,40 +10,48 @@
   padding-block: 26px;
   margin-block: 40px;
 
-  img {
+  .image {
+    margin-top: 40px;
     width: 100%;
-    max-height: 800px;
+    height: 400px;
+    background-color: #c1d0dd;
     object-fit: cover;
     object-position: center;
   }
 
   .topPost {
     padding-inline: 30px;
-
     .userInfoPost {
       display: flex;
+      margin-bottom: 20px;
       align-items: center;
       gap: 14px;
+      height: 19px;
+      // background-color: #c1d0dd;
       flex-wrap: wrap;
 
       .userNamePost {
-        background: #e9e2f8;
-        border-radius: 9px;
+        background: #c1d0dd;
+        border-radius: 4px;
         font-weight: 600;
+        width: 89px;
+        height: 19px;
         font-size: 14px;
         padding: 1px 8px;
-        color: #9a5de7;
       }
 
       .userDatePost {
         font-weight: 600;
         font-size: 12px;
         line-height: 13px;
-        color: #696778;
+        width: 78px;
+        height: 18px;
+        border-radius: 4px;
+        background-color: #c1d0dd;
       }
 
       .userDateDetails {
-        color: #9a5de7;
+        color: #c1d0dd;
         font-weight: 600;
         font-size: 14px;
 
@@ -54,9 +62,8 @@
 
       .userDateHoursPost {
         display: none;
-        color: #9a5de7;
-        background: #e9e2f8;
-        border-radius: 9px;
+        background: #c1d0dd;
+        border-radius: 4px;
         font-weight: 600;
         font-size: 12px;
         padding: 0px 5px;
@@ -64,12 +71,15 @@
     }
 
     h2 {
-      color: #111f33;
+      background-color: #c1d0dd;
       font-weight: 700;
       font-size: 26px;
+      border-radius: 4px;
+      max-width: 306px;
+      height: 31px;
       line-height: 33px;
       margin-top: 12px;
-      margin-bottom: 17px;
+      margin-bottom: 22px;
     }
   }
 
@@ -79,10 +89,12 @@
       font-weight: 400;
       font-size: 16px;
       line-height: 150%;
-      color: #5a5a5a;
-      margin-bottom: 21px;
-      max-height: 166px;
-      overflow-y: scroll;
+      background-color: #c1d0dd;
+      margin-bottom: 12px;
+      max-width: 517px;
+      margin-inline: 30px;
+      height: 20px;
+      border-radius: 4px;
     }
   }
 
@@ -101,31 +113,44 @@
         font-weight: 400;
         font-size: 20px;
         line-height: 25px;
-        color: #000000;
+        width: 53px;
+        height: 30px;
+        background-color: #c1d0dd;
+        border-radius: 4px;
       }
 
       .tagContentPost {
         display: flex;
         gap: 16px;
         flex-wrap: wrap;
-
+        background-color: #c1d0dd;
+        width: 117px;
+        height: 30px;
+        border-radius: 4px;
         span {
-          background: #e9e2f8;
           border-radius: 4px;
           padding: 5px 10px;
           font-size: 16px;
           line-height: 20px;
-          color: #9a5de7;
         }
       }
+    }
+    button {
+      background-color: #c1d0dd;
+      width: 72px;
+      height: 30px;
     }
   }
 
   @include responsive(600px) {
+    .image {
+      height: 330px;
+    }
     .topPost {
       h2 {
         font-size: 22px;
-        margin-bottom: 10px;
+        max-width: 230px;
+        margin-bottom: 14px;
       }
 
       .userInfoPost {
@@ -162,3 +187,5 @@
     }
   }
 }
+
+

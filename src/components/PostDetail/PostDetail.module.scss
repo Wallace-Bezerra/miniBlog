@@ -1,8 +1,8 @@
 @import "../../styles/patterns.module.scss";
-
+@import "../../styles/mixins.scss";
 .postDetail {
   background-color: #fff;
-  width: 897px;
+  max-width: 897px;
   margin: 0 auto;
   padding-inline: 50px;
   border-radius: 18px;
@@ -19,6 +19,7 @@
     .userInfoPost {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: 14px;
       .userNamePost {
         background: #e9e2f8;
@@ -68,7 +69,6 @@
   }
   .contentPost {
     p {
-      // padding-inline: 30px;
       font-weight: 400;
       font-size: 16px;
       line-height: 150%;
@@ -93,6 +93,7 @@
       .tagContentPost {
         display: flex;
         gap: 16px;
+        flex-wrap: wrap;
         span {
           background: #e9e2f8;
           border-radius: 4px;
@@ -101,6 +102,49 @@
           line-height: 20px;
           color: #9a5de7;
         }
+      }
+    }
+  }
+  @include responsive(600px) {
+    padding-inline: 25px;
+    padding-block: 28px;
+    margin-block: 10px;
+    .topPost {
+      h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+
+      .userInfoPost {
+        .userDatePost {
+          font-size: 10px;
+        }
+
+        .userNamePost {
+          font-size: 12px;
+        }
+
+        .userDateDetails {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .contentPost {
+      p {
+        font-size: 14px;
+      }
+    }
+
+    .footerPost {
+      .tagsPost {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      a {
+        align-self: flex-end;
       }
     }
   }

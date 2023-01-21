@@ -5,10 +5,12 @@ import { useNavigate, Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import { PostCard } from "../../components/PostCard/PostCard";
+import { Loading } from "../../components/Loading/Loading";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 // import { MenuContext } from "../../context/MenuContext";
 import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
 import { doc } from "firebase/firestore";
+import { PostCardSkeleton } from "../../components/PostCard/PostCardSkeleton";
 
 export const Home = () => {
   const { menu } = useMenuIsOpen();
@@ -31,7 +33,7 @@ export const Home = () => {
   const handleChange = (e) => {
     menu.setMenuIsOpen(false);
     setSearch(e.target.value);
-  }
+  };
   return (
     <AnimatePresence>
       <motion.section
@@ -41,7 +43,8 @@ export const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, damping: 5 }}
       >
-        <motion.div className={styles.topArea}
+        <motion.div
+          className={styles.topArea}
           initial={{ opacity: 0, x: 25 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
@@ -62,7 +65,8 @@ export const Home = () => {
             </button>
           </form>
         </motion.div>
-        {posts &&
+        {/* <PostCardSkeleton/> */}
+        {posts ? (
           posts.map((post) => {
             // console.log(post.CreatedAt.toDate());
             return (
@@ -77,11 +81,17 @@ export const Home = () => {
                 arrayTags={post.arrayTags}
               />
             );
-          })}
-        {loading && (
-          <img className="loading" src="./loading.svg" alt="loading..." />
+          })
+        ) : (
+          <>
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+          </>
         )}
+        {/* {loading && <Loading />} */}
       </motion.section>
-    </AnimatePresence >
+    </AnimatePresence>
   );
 };

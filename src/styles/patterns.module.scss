@@ -169,7 +169,7 @@ textarea {
           }
         }
 
-        &+label {
+        & + label {
           margin-top: 30px;
         }
       }
@@ -183,4 +183,14 @@ textarea {
       }
     }
   }
+}
+
+@keyframes skeleton {
+  to {
+    opacity: 0.5;
+  }
+}
+
+.skeleton {
+  animation: skeleton 1s linear infinite alternate;
 }

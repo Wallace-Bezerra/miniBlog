@@ -65,6 +65,7 @@
   }
 
   @include responsive(400px) {
+    margin-top: 0px;
     .formSignUp {
       .title {
         font-size: 26px;

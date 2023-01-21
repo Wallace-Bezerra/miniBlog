@@ -71,4 +71,18 @@
       height: 230px;
     }
   }
+  @include responsive(480px) {
+    .infoText {
+      h1 {
+        font-size: 80px;
+      }
+      h3 {
+        font-size: 51px;
+      }
+
+      P {
+        font-size: 28px;
+      }
+    }
+  }
 }

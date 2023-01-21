@@ -12,7 +12,7 @@ export const Post = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className={styles.home}
+        className={styles.post}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
