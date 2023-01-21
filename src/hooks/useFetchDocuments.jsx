@@ -71,14 +71,14 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
       dateDifference = Math.floor(differenceInHours) + " h";
     } else if (differenceInDays < 7) {
       dateDifference = Math.floor(differenceInDays) + " d";
-    } else if (differenceInWeeks < 4) {
+    } else if (differenceInWeeks < 5) {
       dateDifference = Math.floor(differenceInWeeks) + " sem";
     } else if (differenceInMonths < 12 && differenceInMonths > 0) {
       dateDifference = Math.floor(differenceInMonths) + " m";
     } else {
       dateDifference = Math.floor(differenceInYears) + " a";
     }
-    console.log(dateDifference, differenceInMonths);
+    // console.log(dateDifference, differenceInMonths, differenceInWeeks);
     return { formatedDate, formatedDateHours, dateDifference };
   };
 

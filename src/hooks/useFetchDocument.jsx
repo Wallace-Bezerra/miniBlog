@@ -60,7 +60,7 @@ export const useFetchDocument = (docCollection, id) => {
       dateDifference = Math.floor(differenceInHours) + " h";
     } else if (differenceInDays < 7) {
       dateDifference = Math.floor(differenceInDays) + " d";
-    } else if (differenceInWeeks < 3) {
+    } else if (differenceInWeeks < 5) {
       dateDifference = Math.floor(differenceInWeeks) + " sem";
     } else if (differenceInMonths < 12 && differenceInMonths > 0) {
       dateDifference = Math.floor(differenceInMonths) + " m";

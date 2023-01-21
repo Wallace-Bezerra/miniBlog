@@ -25,7 +25,7 @@ export const Search = () => {
       >
         {posts && posts.length === 0 && (
           <div className={styles.notFoundSearch}>
-            <div>
+            <div className={styles.contents}>
               <h1>Hum...</h1>
               <p>A busca deste post não foi encontrada...</p>
 
@@ -33,7 +33,7 @@ export const Search = () => {
                 <button className={styles.btn}>Voltar</button>
               </Link>
             </div>
-            <div>
+            <div className={styles.image}>
               <img src="/NotFound.svg" alt="Ilustração NotFound" />
             </div>
           </div>
