@@ -1,41 +1,74 @@
 @import "../../styles/patterns.module.scss";
+@import "../../styles/mixins.scss";
 
 .notFound {
   margin: 0 auto;
   margin-block: 40px;
   display: flex;
+  padding-inline: 40px;
   min-height: 558px;
+
   // align-items: center;
   .infoText {
     h1 {
       font-weight: 700;
       font-size: 140px;
       line-height: 100%;
-      color: #212121;
+      color: #fff;
       // margin-bottom: 40px;
     }
+
     h3 {
       font-weight: 700;
       font-size: 64px;
       line-height: 131%;
       letter-spacing: 0.0607778px;
-      color: #057bca;
+      color: #867ad6;
       margin-bottom: 16px;
     }
+
     p {
       font-weight: 700;
       font-size: 36px;
       line-height: 120%;
       max-width: 416px;
       margin-bottom: 23px;
+      color: #dbdbdb;
     }
+
     .btn {
       background-color: #212121;
       box-shadow: none;
       padding: 14px 32px;
     }
   }
+
   .box {
-    align-self: flex-end;
+    align-self: center;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  @include responsive(845px) {
+    flex-direction: column-reverse;
+    gap: 30px;
+
+    .infoText {
+      h1 {
+        font-size: 105px;
+        margin-bottom: 10px;
+      }
+
+      P {
+        max-width: 340px;
+      }
+    }
+
+    .box {
+      width: 268px;
+      height: 230px;
+    }
   }
 }

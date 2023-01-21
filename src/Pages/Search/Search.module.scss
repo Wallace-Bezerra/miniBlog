@@ -1,25 +1,30 @@
 @import "../../styles/patterns.module.scss";
+@import "../../styles/mixins.scss";
 
 .search {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
+
   .resultSearch {
     margin-top: 60px;
     margin-bottom: 16px;
     display: flex;
     gap: 20px;
     align-items: center;
+    color: #fff;
+
     a {
       display: flex;
       padding: 2px;
     }
+
     h1 {
       padding-block: 12px;
 
       span {
-        color: #9a5de7;
+        color: #867ad6;
       }
     }
   }
@@ -27,20 +32,76 @@
   .notFoundSearch {
     display: flex;
     align-items: center;
+    padding-inline: 20px;
     gap: 50px;
-    p {
-      max-width: 399px;
-      font-weight: 700;
-      font-size: 36px;
-      line-height: 131%;
-      letter-spacing: 0.0607778px;
-      color: #010101;
-      margin-bottom: 18px;
+
+    .contents {
+      h1 {
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 131%;
+        letter-spacing: 0.0607778px;
+        color: #867ad6;
+      }
+
+      p {
+        max-width: 399px;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 131%;
+        letter-spacing: 0.0607778px;
+        color: #dbdbdb;
+        margin-bottom: 18px;
+      }
+
+      .btn {
+        background-color: #212121;
+        box-shadow: none;
+        padding: 14px 32px;
+      }
     }
-    .btn {
-      background-color: #212121;
-      box-shadow: none;
-      padding: 14px 32px;
+
+    .image {
+      img {
+        max-width: 342px;
+        width: 100%;
+        max-height: 340px;
+      }
+    }
+
+    @include responsive(820px) {
+      .contents {
+        p {
+          font-size: 28.8px;
+        }
+      }
+    }
+
+    @include responsive(680px) {
+      // padding-block: 30px;
+      flex-direction: column-reverse;
+      gap: 25px;
+
+      .contents {
+        max-width: 319.2px;
+
+        h1 {
+          font-size: 51.2px;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 28.8px;
+          margin-bottom: 30px;
+        }
+      }
+
+      .image {
+        img {
+          width: 222px;
+          height: 219.67px;
+        }
+      }
     }
   }
 }

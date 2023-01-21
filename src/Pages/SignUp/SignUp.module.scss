@@ -1,35 +1,74 @@
 @import "../../styles/patterns.module.scss";
+@import "../../styles/mixins.scss";
 
-.imageSignUp {
-  position: relative;
-  .iconBlue {
-    width: 91px;
-    height: 91px;
-    background: rgba(196, 234, 255, 0.66);
-    backdrop-filter: blur(11px);
-    border-radius: 50%;
-    position: absolute;
-    left: -55px;
-    bottom: 122px;
+.signUp {
+  .imageSignUp {
+    position: relative;
+    max-width: 685.9px;
+    max-height: 665.17px;
+
     img {
+      width: 100%;
+    }
+
+    &::before {
+      content: "";
       position: absolute;
-      left: 20%;
-      right: 35.25%;
-      top: 28%;
-      bottom: 64.3%;
+      display: block;
+      top: 200px;
+      left: 0;
+      max-width: 400px;
+      max-height: 400px;
+      background: #5f627e;
+      border-radius: 50%;
+      filter: blur(199px);
+      z-index: -1;
+    }
+
+    .iconBlue {
+      width: 91px;
+      height: 91px;
+      background: rgba(196, 234, 255, 0.66);
+      backdrop-filter: blur(11px);
+      border-radius: 50%;
+      position: absolute;
+      left: -55px;
+      bottom: 122px;
+
+      img {
+        position: absolute;
+        left: 20%;
+        right: 35.25%;
+        top: 28%;
+        bottom: 64.3%;
+      }
+    }
+
+    .iconYellow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 104px;
+      max-height: 104px;
+      background: rgba(18, 18, 14, 0.24);
+      backdrop-filter: blur(3px);
+      border-radius: 50%;
+      position: absolute;
+      bottom: -32px;
+      right: -26px;
     }
   }
-  .iconYellow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 104px;
-    height: 104px;
-    background: rgba(18, 18, 14, 0.24);
-    backdrop-filter: blur(3px);
-    border-radius: 50%;
-    position: absolute;
-    bottom: -32px;
-    right: -26px;
+
+  @include responsive(1080px) {
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  @include responsive(400px) {
+    .formSignUp {
+      .title {
+        font-size: 26px;
+      }
+    }
   }
 }

@@ -8,12 +8,16 @@ import {
   where,
   QuerySnapshot,
 } from "firebase/firestore";
+import { async } from "@firebase/util";
 
 export const useFetchDocuments = (docCollection, search = null, uid = null) => {
   const [documents, setDocuments] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
+  useEffect(() => {
+    console.log(loading, "usefetch");
+  }, [loading]);
   const [cancelled, setCancelled] = useState(false);
 
   const getDateAndHours = (dateDoc) => {
@@ -67,21 +71,21 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
       dateDifference = Math.floor(differenceInHours) + " h";
     } else if (differenceInDays < 7) {
       dateDifference = Math.floor(differenceInDays) + " d";
-    } else if (differenceInWeeks < 3) {
+    } else if (differenceInWeeks < 5) {
       dateDifference = Math.floor(differenceInWeeks) + " sem";
     } else if (differenceInMonths < 12 && differenceInMonths > 0) {
       dateDifference = Math.floor(differenceInMonths) + " m";
     } else {
       dateDifference = Math.floor(differenceInYears) + " a";
     }
-
+    // console.log(dateDifference, differenceInMonths, differenceInWeeks);
     return { formatedDate, formatedDateHours, dateDifference };
   };
 
   useEffect(() => {
     const loadData = async () => {
-      if (cancelled) return;
       setLoading(true);
+      // if (cancelled) return;
       setError(false);
       const collectionRef = await collection(db, docCollection);
       try {
@@ -128,8 +132,12 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         setError(error.message);
       } finally {
         setLoading(false);
+        // setTimeout(() => {
+        //   setLoading(false);
+        // }, 3000);
       }
     };
+
     console.log("Uid", documents);
     loadData();
   }, [docCollection, search, uid, cancelled]);
