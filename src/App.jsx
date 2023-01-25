@@ -1,11 +1,15 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  ScrollRestoration,
+} from "react-router-dom";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { useAuthentication } from "./hooks/useAuthentication";
-import { useContext } from "react";
 import styles from "./styles/main.module.scss";
-
 
 import { Home } from "./Pages/Home/Home";
 import { About } from "./Pages/About/About";
@@ -23,11 +27,11 @@ import { Search } from "./Pages/Search/Search";
 import { Post } from "./Pages/Post/Post";
 import { Loading } from "./components/Loading/Loading";
 import { MenuProvider } from "./context/MenuContext";
+import ScrollToTop from "./components/ScrollToUp/ScrollToUp";
 
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
-
 
   const loadingUser = user === undefined;
 
@@ -50,46 +54,51 @@ function App() {
   //   return <img className="loading" src="./loading.svg" alt="loading..." />;
   // }
 
-
   return (
     <div className={styles.App}>
       <AuthProvider value={{ user }}>
         <MenuProvider>
           <BrowserRouter>
             <NavBar />
-            {loadingUser ? <Loading /> :
-              <>
-                <Routes>
-                  <Route path="/" element={<Home />}></Route>
-                  <Route path="/about" element={<About />}></Route>
-                  <Route path="/search" element={<Search />}></Route>
-                  <Route path="/posts/:id" element={<Post />}></Route>
-                  <Route
-                    path="/login"
-                    element={!user ? <Login /> : <Navigate to="/" />}
-                  ></Route>
-                  <Route
-                    path="/signup"
-                    element={!user ? <SignUp /> : <Navigate to="/" />}
-                  ></Route>
-                  <Route
-                    path="/dashboard"
-                    element={user ? <Dashboard /> : <Navigate to="/login" />}
-                  ></Route>
-                  <Route
-                    path="/posts/create"
-                    element={user ? <CreatePost /> : <Navigate to="/login" />}
-                  ></Route>
-                  <Route
-                    path="/posts/edit/:id"
-                    element={user ? <EditPost /> : <Navigate to="/login" />}
-                  ></Route>
 
-                  <Route path="/*" element={<NotFound />}></Route>
-                </Routes>
+            {loadingUser ? (
+              <Loading />
+            ) : (
+              <>
+                <ScrollToTop>
+                  <Routes>
+                    <Route path="/" element={<Home />}></Route>
+
+                    <Route path="/about" element={<About />}></Route>
+                    <Route path="/search" element={<Search />}></Route>
+                    <Route path="/posts/:id" element={<Post />}></Route>
+                    <Route
+                      path="/login"
+                      element={!user ? <Login /> : <Navigate to="/" />}
+                    ></Route>
+                    <Route
+                      path="/signup"
+                      element={!user ? <SignUp /> : <Navigate to="/" />}
+                    ></Route>
+                    <Route
+                      path="/dashboard"
+                      element={user ? <Dashboard /> : <Navigate to="/login" />}
+                    ></Route>
+                    <Route
+                      path="/posts/create"
+                      element={user ? <CreatePost /> : <Navigate to="/login" />}
+                    ></Route>
+                    <Route
+                      path="/posts/edit/:id"
+                      element={user ? <EditPost /> : <Navigate to="/login" />}
+                    ></Route>
+
+                    <Route path="/*" element={<NotFound />}></Route>
+                  </Routes>
+                </ScrollToTop>
                 <Footer />
               </>
-            }
+            )}
           </BrowserRouter>
         </MenuProvider>
       </AuthProvider>

@@ -1,15 +1,13 @@
 import styles from "./Home.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
 // hooks
-import { useNavigate, Link } from "react-router-dom";
-
-import { useEffect, useState } from "react";
+import { useNavigate} from "react-router-dom";
+import { useState } from "react";
 import { PostCard } from "../../components/PostCard/PostCard";
-import { Loading } from "../../components/Loading/Loading";
+
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 // import { MenuContext } from "../../context/MenuContext";
 import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
-import { doc } from "firebase/firestore";
 import { PostCardSkeleton } from "../../components/PostCard/PostCardSkeleton";
 
 export const Home = () => {
@@ -25,10 +23,6 @@ export const Home = () => {
       return navigate(`/search?q=${search}`);
     }
   };
-
-  useEffect(() => {
-    console.log(loading);
-  }, [loading]);
 
   const handleChange = (e) => {
     menu.setMenuIsOpen(false);

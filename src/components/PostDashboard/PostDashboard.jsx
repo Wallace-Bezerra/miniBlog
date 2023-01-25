@@ -37,7 +37,7 @@ export const PostDashboard = ({ title, image, id, deleteDocument }) => {
                 }}
               />
             </Link>
-            <Link
+            <a
               onClick={() => {
                 deleteDocument(id);
               }}
@@ -50,7 +50,7 @@ export const PostDashboard = ({ title, image, id, deleteDocument }) => {
                   transition: { type: "spring", duration: 0.6 },
                 }}
               />
-            </Link>
+            </a>
           </div>
         </div>
 

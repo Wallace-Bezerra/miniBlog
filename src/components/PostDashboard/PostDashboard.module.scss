@@ -36,6 +36,9 @@
     .buttonActions {
       display: flex;
       gap: 17px;
+      a {
+        cursor: pointer;
+      }
     }
   }
 

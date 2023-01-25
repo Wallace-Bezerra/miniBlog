@@ -60,13 +60,6 @@
     }
   }
 
-  .loading {
-    position: absolute;
-    left: calc(50% - 80px);
-    top: calc(50% - 80px);
-    width: 160px;
-  }
-
   @include responsive(600px) {
     .topArea {
       h1 {

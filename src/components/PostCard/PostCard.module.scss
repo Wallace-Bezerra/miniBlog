@@ -82,7 +82,22 @@
       color: #5a5a5a;
       margin-bottom: 21px;
       max-height: 166px;
-      overflow-y: scroll;
+      overflow: overlay;
+      margin-right: 10px;
+      &::-webkit-scrollbar-track {
+        border-radius: 5px;
+        background-color: #d2c6ec;
+        padding-right: 20px;
+      }
+      &::-webkit-scrollbar {
+        width: 9px;
+        padding-right: 20px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        padding-right: 20px;
+        background-color: #9a5de7;
+      }
     }
   }
 

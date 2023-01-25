@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./EditPost.module.scss";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 
 import { useFetchDocument } from "../../hooks/useFetchDocument";
@@ -17,6 +17,7 @@ export const EditPost = () => {
   const { menu } = useMenuIsOpen();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { user } = useAuthValue();
   const { id } = useParams();

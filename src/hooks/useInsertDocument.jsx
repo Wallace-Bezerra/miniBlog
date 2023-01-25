@@ -35,7 +35,7 @@ export const useInsertDocument = (docCollection) => {
     };
   }, []);
 
-  // função de despachar ação 
+  // função de despachar ação
   const checkCancelBeforeDispatch = (action) => {
     if (!cancelled) {
       dispatch(action);
@@ -45,32 +45,32 @@ export const useInsertDocument = (docCollection) => {
   /////////////////////////////////////////////////////////////////////////////
   // funcão que insere os dados no firebase
   const insertDocument = async (document) => {
-
     //despachar ação de LOADING
     checkCancelBeforeDispatch({
       type: "LOADING",
     });
+    setTimeout(async () => {
+      try {
+        const newDocument = { ...document, CreatedAt: Timestamp.now() };
 
-    try {
-      const newDocument = { ...document, CreatedAt: Timestamp.now() };
-      const insertedDocument = await addDoc(
-        collection(db, docCollection),
-        newDocument
-      );
+        const insertedDocument = await addDoc(
+          collection(db, docCollection),
+          newDocument
+        );
 
-      //despachar ação de INSERTED
-      checkCancelBeforeDispatch({
-        type: "INSERTED_DOC",
-        payload: insertedDocument,
-      });
-
-    } catch (error) {
-      //despachar ação de ERROR
-      checkCancelBeforeDispatch({
-        type: "ERROR",
-        payload: error.message,
-      });
-    }
+        //despachar ação de INSERTED
+        checkCancelBeforeDispatch({
+          type: "INSERTED_DOC",
+          payload: insertedDocument,
+        });
+      } catch (error) {
+        //despachar ação de ERROR
+        checkCancelBeforeDispatch({
+          type: "ERROR",
+          payload: error.message,
+        });
+      }
+    }, 1000);
   };
 
   return { insertDocument, response };

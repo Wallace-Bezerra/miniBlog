@@ -16,17 +16,18 @@ export const Dashboard = () => {
     loading,
   } = useFetchDocuments("posts", null, uid);
   const { deleteDocument, response } = useDeleteDocument("posts");
-  console.log(uid);
+
+  console.log(response, "responsee");
   return (
     <div className={styles.dashboard}>
       <h1>Gerencie seus Posts</h1>
-      {/* {loading && <PostDashboardSkeleton />} */}
       <div className={styles.PostDashboardContent}>
         {posts ? (
           <>
             {posts.map((post) => {
               return (
                 <PostDashboard
+                  key={post.id}
                   title={post.title}
                   image={post.image}
                   id={post.id}
