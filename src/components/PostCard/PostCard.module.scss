@@ -12,7 +12,7 @@
 
   img {
     width: 100%;
-    max-height: 800px;
+    max-height: 700px;
     object-fit: cover;
     object-position: center;
   }
@@ -137,10 +137,14 @@
   }
 
   @include responsive(600px) {
+    img {
+      max-height: 420px;
+    }
     .topPost {
       h2 {
         font-size: 22px;
         margin-bottom: 10px;
+        line-height: 25px;
       }
 
       .userInfoPost {

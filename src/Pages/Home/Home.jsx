@@ -1,9 +1,10 @@
 import styles from "./Home.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
 // hooks
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { PostCard } from "../../components/PostCard/PostCard";
+import { Modal } from "../../components/Modal/Modal";
 
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 // import { MenuContext } from "../../context/MenuContext";
@@ -12,7 +13,7 @@ import { PostCardSkeleton } from "../../components/PostCard/PostCardSkeleton";
 
 export const Home = () => {
   const { menu } = useMenuIsOpen();
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const { documents: posts, error, loading } = useFetchDocuments("posts");
 
@@ -30,6 +31,7 @@ export const Home = () => {
   };
   return (
     <AnimatePresence>
+      {menu.ModalIsOpen && <Modal />}
       <motion.section
         className={styles.home}
         initial={{ opacity: 0 }}
@@ -44,6 +46,7 @@ export const Home = () => {
           transition={{ duration: 0.4 }}
         >
           <h1>Veja os últimos posts da comunidade</h1>
+
           <form onSubmit={handleSubmit} className={styles.search}>
             <input
               type="text"

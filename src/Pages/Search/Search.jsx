@@ -49,16 +49,16 @@ export const Search = () => {
                 <path
                   d="M18.9167 8H2"
                   stroke="#F0F9FF"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M8 15L1 8L8 1"
                   stroke="#F0F9FF"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </Link>
@@ -74,8 +74,8 @@ export const Search = () => {
             return (
               <>
                 <PostCard
-                  key={post.id}
                   id={post.id}
+                  key={`post.id ${"search"}`}
                   CreatedDate={post.createdDate}
                   CreatedBy={post.createdBy}
                   title={post.title}

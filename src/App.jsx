@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  ScrollRestoration,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
@@ -30,7 +24,7 @@ import { MenuProvider } from "./context/MenuContext";
 import ScrollToTop from "./components/ScrollToUp/ScrollToUp";
 
 function App() {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState();
   const { auth } = useAuthentication();
 
   const loadingUser = user === undefined;
@@ -38,21 +32,8 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user);
-      console.log(user);
     });
-    if (user) {
-      console.log("usuario ativo", user.auth.currentUser.displayName);
-      document.title = user.auth.currentUser.displayName;
-    }
-
-    return () => {
-      document.title = "MiniBlog";
-    };
   }, [auth, user]);
-
-  // if (!loadingUser) {
-  //   return <img className="loading" src="./loading.svg" alt="loading..." />;
-  // }
 
   return (
     <div className={styles.App}>

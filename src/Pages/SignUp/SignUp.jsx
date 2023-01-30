@@ -5,6 +5,7 @@ import { useAuthentication } from "../../hooks/useAuthentication";
 import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./SignUp.module.scss";
+import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
 // import patterns from "../../styles/patterns.module.scss";
 export const SignUp = () => {
   const [displayName, setDisplayName] = useState("");
@@ -12,7 +13,7 @@ export const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
-
+  const { menu } = useMenuIsOpen();
   const [error, setError] = useState("");
   const {
     auth,
@@ -36,12 +37,13 @@ export const SignUp = () => {
       setError("As senhas devem ser iguais!");
       return;
     }
-    console.log(user);
 
     const response = await createUser(user);
-    if (response) {
-      alert("Cadastrado!");
+    if (response === true) {
+      alert("Cadastrado!", response.displayName);
     }
+    menu.setModalIsOpen(true);
+
     console.log(response);
   };
   // console.log(patterns);
