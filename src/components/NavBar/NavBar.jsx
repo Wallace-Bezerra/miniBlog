@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,6 +10,7 @@ export const NavBar = () => {
   const { app } = useAppContext();
   const { logout } = useAuthentication();
   const { user } = useAuthValue();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.addEventListener("resize", updateScreen);
@@ -27,14 +28,20 @@ export const NavBar = () => {
     <header>
       <nav className={styles.nav}>
         <div className={styles.logo}>
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             Mini<span>Blog</span>
           </Link>
         </div>
         <AnimatePresence>
           <motion.ul
-            className={`${styles.listNav} ${app.menuIsOpen ? styles.active : ""
-              }`}
+            className={`${styles.listNav} ${
+              app.menuIsOpen ? styles.active : ""
+            }`}
             initial={false}
             key="menu"
             animate={{ opacity: 1, transition: { duration: 0.8 } }}
@@ -43,6 +50,9 @@ export const NavBar = () => {
             <li>
               <NavLink
                 to="/"
+                onClick={() => {
+                  navigate("/");
+                }}
                 className={({ isActive }) => (isActive ? styles.active : null)}
               >
                 Home

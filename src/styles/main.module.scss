@@ -35,7 +35,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  @include responsive(1080px) {
+    padding-top: 115px;
+  }
   @include responsive(700px) {
     gap: 40px;
   }
