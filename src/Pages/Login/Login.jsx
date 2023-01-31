@@ -3,19 +3,22 @@ import { Link } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Login.module.scss";
+import { useAppContext } from "../../hooks/useAppContext";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const { app } = useAppContext();
   const {
     login,
     error: authError,
     setError: setAuthError,
     loading,
   } = useAuthentication();
-
+  const handleMenuIsOpen = () => {
+    app.setMenuIsOpen(false);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -54,6 +57,7 @@ export const Login = () => {
                 type="email"
                 name="email"
                 value={email}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -68,6 +72,7 @@ export const Login = () => {
                 name="password"
                 style={{ border: error ? "solid 2px #f32222" : null }}
                 value={password}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -93,7 +98,9 @@ export const Login = () => {
 
             <div className={styles.singUpLink}>
               <div>
-                <p>Caso ainda não tenha uma conta conosco, é possível se cadastrar
+                <p>
+                  Caso ainda não tenha uma conta conosco, é possível se
+                  cadastrar
                   <Link to="/signup"> Clicando aqui.</Link>
                 </p>
               </div>

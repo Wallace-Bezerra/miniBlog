@@ -18,7 +18,9 @@ export const SignUp = () => {
     setError: setAuthError,
     loading,
   } = useAuthentication();
-
+  const handleMenuIsOpen = () => {
+    app.setMenuIsOpen(false);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -63,6 +65,7 @@ export const SignUp = () => {
                 type="text"
                 name="displayName"
                 value={displayName}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setDisplayName(e.target.value);
                 }}
@@ -76,6 +79,7 @@ export const SignUp = () => {
                 type="email"
                 name="email"
                 value={email}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -90,6 +94,7 @@ export const SignUp = () => {
                 name="password"
                 style={{ border: error ? "solid 2px #f32222" : null }}
                 value={password}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -104,6 +109,7 @@ export const SignUp = () => {
                 name="confirmPassword"
                 style={{ border: error ? "solid 2px #f32222" : null }}
                 value={confirmPassword}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);
                 }}
