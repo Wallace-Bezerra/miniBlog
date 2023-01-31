@@ -1,6 +1,5 @@
 import styles from "./Dashboard.module.scss";
 import { Link } from "react-router-dom";
-// hooks
 import { useAuthValue } from "../../context/AuthContext";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
@@ -11,38 +10,35 @@ export const Dashboard = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
   const {
-    documents: posts,
-    error,
-    loading,
+    documents: posts, loading
   } = useFetchDocuments("posts", null, uid);
   const { deleteDocument, response } = useDeleteDocument("posts");
 
-  console.log(response, "responsee");
   return (
     <div className={styles.dashboard}>
       <h1>Gerencie seus Posts</h1>
+      {console.log(loading)}
       <div className={styles.PostDashboardContent}>
-        {posts ? (
-          <>
-            {posts.map((post) => {
-              return (
-                <PostDashboard
-                  key={post.id}
-                  title={post.title}
-                  image={post.image}
-                  id={post.id}
-                  deleteDocument={deleteDocument}
-                />
-              );
-            })}
-          </>
-        ) : (
+        {loading && posts?.length > 0 && (
           <>
             <PostDashboardSkeleton />
             <PostDashboardSkeleton />
             <PostDashboardSkeleton />
           </>
         )}
+        {!loading &&
+          posts?.map((post) => {
+            return (
+              <PostDashboard
+                key={post.id}
+                title={post.title}
+                image={post.image}
+                id={post.id}
+                deleteDocument={deleteDocument}
+              />
+            )
+          })
+        }
       </div>
 
       {posts && posts.length == 0 && (

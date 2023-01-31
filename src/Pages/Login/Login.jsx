@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuthValue } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Login.module.scss";
@@ -9,11 +8,8 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const user = useAuthValue();
-  const navigate = useNavigate();
 
   const {
-    auth,
     login,
     error: authError,
     setError: setAuthError,
@@ -82,9 +78,6 @@ export const Login = () => {
             <button className={styles.btn} type="submit" disabled={loading}>
               {loading ? "Aguarde..." : "Entrar"}
             </button>
-            {/* <button className={styles.btn} type="submit" disabled={loading}>
-            {loading ? "Aguarde..." : "Cadastrar"}
-          </button> */}
             {error && (
               <div className={styles.error}>
                 <img src="/alert-octagon.svg" alt="icone de alerta" />

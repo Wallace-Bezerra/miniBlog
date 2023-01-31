@@ -1,21 +1,18 @@
 import styles from "./Home.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
-// hooks
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { PostCard } from "../../components/PostCard/PostCard";
 import { Modal } from "../../components/Modal/Modal";
-
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
-// import { MenuContext } from "../../context/MenuContext";
-import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
+import { useAppContext } from "../../hooks/useAppContext";
 import { PostCardSkeleton } from "../../components/PostCard/PostCardSkeleton";
 
 export const Home = () => {
-  const { menu } = useMenuIsOpen();
+  const { app } = useAppContext();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const { documents: posts, error, loading } = useFetchDocuments("posts");
+  const { documents: posts, loading } = useFetchDocuments("posts");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,12 +23,12 @@ export const Home = () => {
   };
 
   const handleChange = (e) => {
-    menu.setMenuIsOpen(false);
+    app.setMenuIsOpen(false);
     setSearch(e.target.value);
   };
   return (
     <AnimatePresence>
-      {menu.ModalIsOpen && <Modal />}
+      {app.ModalIsOpen && <Modal />}
       <motion.section
         className={styles.home}
         initial={{ opacity: 0 }}
@@ -54,18 +51,24 @@ export const Home = () => {
               placeholder="Busque por tags"
               onChange={handleChange}
               onFocus={() => {
-                menu.setMenuIsOpen(false);
+                app.setMenuIsOpen(false);
               }}
             />
             <button>
-              <img src="/icon-search.svg" alt="" />
+              <img src="/icon-search.svg" alt="Icone de pesquisa" />
             </button>
           </form>
         </motion.div>
-        {/* <PostCardSkeleton/> */}
-        {posts ? (
-          posts.map((post) => {
-            // console.log(post.CreatedAt.toDate());
+        {loading && (
+          <>
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+          </>
+        )}
+        {!loading &&
+          posts?.map((post) => {
             return (
               <PostCard
                 key={post.id}
@@ -78,16 +81,7 @@ export const Home = () => {
                 arrayTags={post.arrayTags}
               />
             );
-          })
-        ) : (
-          <>
-            <PostCardSkeleton />
-            <PostCardSkeleton />
-            <PostCardSkeleton />
-            <PostCardSkeleton />
-          </>
-        )}
-        {/* {loading && <Loading />} */}
+          })}
       </motion.section>
     </AnimatePresence>
   );

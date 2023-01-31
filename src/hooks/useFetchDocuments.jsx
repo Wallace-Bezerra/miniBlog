@@ -68,9 +68,13 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
       } catch (error) {
         console.log(error.message);
         setError(error.message);
-      } finally {
-        setLoading(false);
       }
+      //  finally {
+      //   // setLoading(false);
+      // }
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     };
 
     console.log("Uid", documents);

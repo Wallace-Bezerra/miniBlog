@@ -1,19 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./SignUp.module.scss";
-import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
-// import patterns from "../../styles/patterns.module.scss";
+import { useAppContext } from "../../hooks/useAppContext";
 export const SignUp = () => {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate();
-  const { menu } = useMenuIsOpen();
+  const { app } = useAppContext();
   const [error, setError] = useState("");
   const {
     auth,
@@ -42,11 +38,9 @@ export const SignUp = () => {
     if (response === true) {
       alert("Cadastrado!", response.displayName);
     }
-    menu.setModalIsOpen(true);
-
-    console.log(response);
+    app.setModalIsOpen(true);
   };
-  // console.log(patterns);
+
   return (
     <AnimatePresence>
       <motion.section
@@ -143,13 +137,7 @@ export const SignUp = () => {
             transition: { type: "spring", duration: 8, repeat: Infinity },
           }}
         >
-          <img src="/mockup.png" alt="" />
-          {/* <div className={styles.iconBlue}>
-          <img src="/Icon_blue.svg" alt="" />
-        </div>
-        <div className={styles.iconYellow}>
-          <img src="/Icon_yellow.svg" alt="" />
-        </div> */}
+          <img src="/mockup.png" alt="Imagem mockup" />
         </motion.div>
       </motion.section>
     </AnimatePresence>

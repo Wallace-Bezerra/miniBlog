@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
 import styles from "./EditPost.module.scss";
-
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
-import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
+import { useAppContext } from "../../hooks/useAppContext";
+
 
 export const EditPost = () => {
   const [title, setTitle] = useState("");
@@ -14,11 +14,8 @@ export const EditPost = () => {
   const [tags, setTags] = useState([]);
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
-  const { menu } = useMenuIsOpen();
-
   const navigate = useNavigate();
-  const location = useLocation();
-
+  const { app } = useAppContext();
   const { user } = useAuthValue();
   const { id } = useParams();
   const {
@@ -28,7 +25,7 @@ export const EditPost = () => {
   } = useFetchDocument("posts", id);
   // console.log(post);
   const handleMenuIsOpen = () => {
-    menu.setMenuIsOpen(false);
+    app.setMenuIsOpen(false);
   };
 
   useEffect(() => {
@@ -182,12 +179,6 @@ export const EditPost = () => {
               </div>
             </label>
           </div>
-          {/* {authError && (
-            <div className={styles.error}>
-              <img src="./alert-octagon.svg" alt="icone de alerta" />
-              <span>{authError}</span>
-            </div>
-          )} */}
         </form>
       </div>
     </section>

@@ -1,14 +1,12 @@
 import { useParams } from "react-router-dom";
 import styles from "./Post.module.scss";
-// import { PostCard } from "../../components/PostCard/PostCard";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 import { PostDetail } from "../../components/PostDetail/PostDetail";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const Post = () => {
   const { id } = useParams();
-  const { document: post, error, loading } = useFetchDocument("posts", id);
-  console.log(post);
+  const { document: post } = useFetchDocument("posts", id);
   return (
     <AnimatePresence>
       <motion.div

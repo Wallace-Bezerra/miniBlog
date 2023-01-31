@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from "../../hooks/useInsertDocument";
-import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
+import { useAppContext } from "../../hooks/useAppContext";
 export const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -12,14 +12,14 @@ export const CreatePost = () => {
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
 
-  const { menu } = useMenuIsOpen();
+  const { app } = useAppContext();
 
   const navigate = useNavigate();
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("posts");
   const handleMenuIsOpen = () => {
-    menu.setMenuIsOpen(false);
+    app.setMenuIsOpen(false);
   };
   const handleSubmit = (e) => {
     e.preventDefault();

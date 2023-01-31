@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { useAuthValue } from "../../context/AuthContext";
-import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
+import { useAppContext } from "../../hooks/useAppContext";
 import styles from "./Modal.module.scss";
 
 export const Modal = () => {
-  const { menu } = useMenuIsOpen();
+  const { app } = useAppContext();
   const authUser = useAuthValue();
   return (
     <div className={styles.overlay}>
@@ -13,7 +12,7 @@ export const Modal = () => {
           src="./closedModal.svg"
           alt="Icone Closed"
           onClick={() => {
-            menu.setModalIsOpen(!menu.ModalIsOpen);
+            app.setModalIsOpen(!app.ModalIsOpen);
           }}
         />
         <h2>Cadastrado com sucesso!</h2>

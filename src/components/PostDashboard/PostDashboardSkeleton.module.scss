@@ -5,20 +5,24 @@
   max-width: 700px;
   width: 100%;
   max-height: 200px;
+  // height: 100%;
   background: #ffffff;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
+
   .ContentData {
     padding-block: 20px;
     padding-left: 34px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+
     .title {
       margin-bottom: 39px;
       padding-right: 77px;
+
       p {
         font-weight: 700;
         background-color: #c1d0dd;
@@ -27,6 +31,7 @@
         border-radius: 4px;
         margin-bottom: 11px;
       }
+
       h2 {
         width: 246px;
         height: 24px;
@@ -34,9 +39,11 @@
         background-color: #c1d0dd;
       }
     }
+
     .buttonActions {
       display: flex;
       gap: 17px;
+
       span {
         display: block;
         width: 26px;
@@ -51,19 +58,22 @@
     span {
       display: block;
       width: 188px;
-      height: 166px;
-      height: 100%;
+      max-height: 200px;
+      height: 200px;
       background-color: #c1d0dd;
       border-radius: 0px 5px 5px 0px;
       cursor: pointer;
     }
   }
+
   @include responsive(730px) {
     flex-direction: column-reverse;
     max-height: initial;
+
     .ContentData {
       padding-block: 30px;
     }
+
     .image {
       span {
         width: 100%;
@@ -72,5 +82,5 @@
       }
     }
   }
- 
+
 }

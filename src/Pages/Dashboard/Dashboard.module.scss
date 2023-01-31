@@ -27,6 +27,7 @@
     padding-inline: 20px;
     width: 100%;
     max-width: 1280px;
+
     p {
       font-weight: 500;
       font-size: 22px;
@@ -50,23 +51,31 @@
     padding-inline: 20px;
     width: 100%;
   }
+
   @include responsive(1080px) {
+    gap: 45px;
+
     h1 {
       margin: 20px;
     }
+
     .dashboardNoPosts {
       margin: 0 auto;
       flex-direction: column;
       gap: 40px;
       align-items: center;
     }
+
     .image {
       img {
         width: 100%;
       }
     }
   }
+
   @include responsive(480px) {
+    gap: 22px;
+
     h1 {
       font-size: 28px;
       margin-top: 15px;

@@ -20,7 +20,7 @@ import { EditPost } from "./Pages/EditPost/EditPost";
 import { Search } from "./Pages/Search/Search";
 import { Post } from "./Pages/Post/Post";
 import { Loading } from "./components/Loading/Loading";
-import { MenuProvider } from "./context/MenuContext";
+import { AppProvider } from "./context/AppContext";
 import ScrollToTop from "./components/ScrollToUp/ScrollToUp";
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
   return (
     <div className={styles.App}>
       <AuthProvider value={{ user }}>
-        <MenuProvider>
+        <AppProvider>
           <BrowserRouter>
             <NavBar />
 
@@ -81,7 +81,7 @@ function App() {
               </>
             )}
           </BrowserRouter>
-        </MenuProvider>
+        </AppProvider>
       </AuthProvider>
     </div>
   );

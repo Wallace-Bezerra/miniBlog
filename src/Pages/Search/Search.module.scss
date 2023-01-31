@@ -79,7 +79,6 @@
     }
 
     @include responsive(680px) {
-      // padding-block: 30px;
       flex-direction: column-reverse;
       gap: 25px;
 
@@ -108,7 +107,6 @@
   @include responsive(600px) {
     .resultSearch {
       margin: 0px;
-      // flex-direction: column;
       max-width: 320px;
       gap: 30px;
       h1 {

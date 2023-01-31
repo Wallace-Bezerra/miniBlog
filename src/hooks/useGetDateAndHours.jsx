@@ -48,7 +48,6 @@ export const useGetDateAndHours = () => {
     } else {
       dateDifference = Math.floor(differenceInYears) + " a";
     }
-    // console.log(dateDifference, differenceInMonths, differenceInWeeks);
     return { formatedDate, formatedDateHours, dateDifference };
   };
   return { getDateAndHours };

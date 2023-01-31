@@ -11,8 +11,6 @@ export const Search = () => {
   const search = query.get("q").toLocaleLowerCase();
   const {
     documents: posts,
-    error,
-    loading,
   } = useFetchDocuments("posts", search);
   return (
     <AnimatePresence>

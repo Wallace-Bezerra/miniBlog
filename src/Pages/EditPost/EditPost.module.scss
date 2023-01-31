@@ -10,7 +10,6 @@
     flex-direction: column;
     form {
       flex-direction: row;
-      // justify-content: space-between;
       gap: 115px;
       width: 100%;
 
@@ -38,8 +37,6 @@
           width: 100%;
           object-fit: cover;
           object-position: center;
-          // max-width: 496px;
-          // height: 600px;
           border-radius: 8px;
           aspect-ratio: auto 1 / 1;
           max-height: 500px;
