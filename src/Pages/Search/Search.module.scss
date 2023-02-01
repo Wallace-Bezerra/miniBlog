@@ -69,7 +69,9 @@
         max-height: 340px;
       }
     }
-
+    @include responsive(1080px) {
+      margin-top: 78px;
+    }
     @include responsive(820px) {
       .contents {
         p {

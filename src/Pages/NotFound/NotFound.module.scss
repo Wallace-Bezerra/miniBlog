@@ -47,7 +47,6 @@
       max-width: 100%;
     }
   }
-
   @include responsive(845px) {
     flex-direction: column-reverse;
     gap: 30px;
