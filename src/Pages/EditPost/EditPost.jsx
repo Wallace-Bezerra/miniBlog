@@ -6,7 +6,7 @@ import { useAuthValue } from "../../context/AuthContext";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useAppContext } from "../../hooks/useAppContext";
-
+import { Error } from "../../components/Error/Error";
 
 export const EditPost = () => {
   const [title, setTitle] = useState("");
@@ -151,16 +151,10 @@ export const EditPost = () => {
               ></textarea>
             </label>
             {response.error && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{response.error}</span>
-              </div>
+              <Error error={response.error} />
             )}
             {error && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{error}</span>
-              </div>
+              <Error error={error} />
             )}
             <button
               className={styles.btn}

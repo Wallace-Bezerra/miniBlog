@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./SignUp.module.scss";
 import { useAppContext } from "../../hooks/useAppContext";
+import { Error } from "../../components/Error/Error";
 export const SignUp = () => {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
@@ -120,18 +121,8 @@ export const SignUp = () => {
             <button className={styles.btn} type="submit" disabled={loading}>
               {loading ? "Aguarde..." : "Cadastrar"}
             </button>
-            {error && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{error}</span>
-              </div>
-            )}
-            {authError && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{authError}</span>
-              </div>
-            )}
+            {error && <Error error={error} />}
+            {authError && <Error error={authError} />}
           </form>
         </div>
 

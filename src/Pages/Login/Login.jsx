@@ -4,6 +4,7 @@ import { useAuthentication } from "../../hooks/useAuthentication";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Login.module.scss";
 import { useAppContext } from "../../hooks/useAppContext";
+import { Error } from "../../components/Error/Error";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -83,18 +84,8 @@ export const Login = () => {
             <button className={styles.btn} type="submit" disabled={loading}>
               {loading ? "Aguarde..." : "Entrar"}
             </button>
-            {error && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{error}</span>
-              </div>
-            )}
-            {authError && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{authError}</span>
-              </div>
-            )}
+            {error && <Error error={error} />}
+            {authError && <Error error={authError} />}
 
             <div className={styles.singUpLink}>
               <div>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from "../../hooks/useInsertDocument";
 import { useAppContext } from "../../hooks/useAppContext";
+import { Error } from "../../components/Error/Error";
 export const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -141,16 +142,10 @@ export const CreatePost = () => {
               {response.loading ? "Aguarde..." : "Postar"}
             </button>
             {response.error && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{response.error}</span>
-              </div>
+              <Error error={response.erro} />
             )}
             {error && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{error}</span>
-              </div>
+              <Error error={error} />
             )}
           </form>
         </div>

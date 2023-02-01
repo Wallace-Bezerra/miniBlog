@@ -82,7 +82,7 @@
     }
   }
 
-  @include responsive(380px) {
+  @include responsive(378px) {
     .singUpLink {
       p {
         line-height: 24px;
@@ -93,5 +93,4 @@
       }
     }
   }
-
 }
