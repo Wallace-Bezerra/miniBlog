@@ -9,15 +9,12 @@ const initialState = {
 const updateReducer = (state, action) => {
     switch (action.type) {
         case "LOADING":
-            console.log(action, "ação loading");
             return { loading: true, error: null };
         case "UPDATED_DOC":
             return { loading: false, error: null };
         case "ERROR":
-            console.log(action, "ação erro");
             return { loading: false, error: action.payload };
         default:
-            console.log(action, "ação padrao");
             return state;
     }
 };

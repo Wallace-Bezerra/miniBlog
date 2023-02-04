@@ -25,7 +25,6 @@ export const CreatePost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    console.log(error);
     //validar url da imagem
 
     try {
@@ -46,7 +45,6 @@ export const CreatePost = () => {
       setError("Insira os todos os dados");
     }
 
-    console.log(response);
     insertDocument({
       title,
       image,

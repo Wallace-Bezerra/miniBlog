@@ -16,7 +16,6 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
   const { getDateAndHours } = useGetDateAndHours();
 
   useEffect(() => {
-    console.log(loading, "usefetch");
   }, [loading]);
   const [cancelled, setCancelled] = useState(false);
 
@@ -66,18 +65,12 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
           );
         });
       } catch (error) {
-        console.log(error.message);
         setError(error.message);
       }
-      //  finally {
-      //   // setLoading(false);
-      // }
       setTimeout(() => {
         setLoading(false);
       }, 1000);
     };
-
-    console.log("Uid", documents);
     loadData();
   }, [docCollection, search, uid, cancelled]);
 

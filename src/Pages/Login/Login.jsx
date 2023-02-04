@@ -35,7 +35,6 @@ export const Login = () => {
       return;
     }
     const response = await login(user);
-    console.log("login", response);
   };
   return (
     <AnimatePresence>

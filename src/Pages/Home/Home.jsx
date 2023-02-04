@@ -16,12 +16,10 @@ export const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(search);
     if (search) {
       return navigate(`/search?q=${search}`);
     }
   };
-
   const handleChange = (e) => {
     app.setMenuIsOpen(false);
     setSearch(e.target.value);

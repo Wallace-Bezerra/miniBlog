@@ -13,7 +13,6 @@ export const SignUp = () => {
   const { app } = useAppContext();
   const [error, setError] = useState("");
   const {
-    auth,
     createUser,
     error: authError,
     setError: setAuthError,
@@ -38,9 +37,6 @@ export const SignUp = () => {
     }
 
     const response = await createUser(user);
-    if (response === true) {
-      alert("Cadastrado!", response.displayName);
-    }
     app.setModalIsOpen(true);
   };
 

@@ -20,10 +20,7 @@ export const EditPost = () => {
   const { id } = useParams();
   const {
     document: post,
-    loading,
-    error: errorPost,
   } = useFetchDocument("posts", id);
-  // console.log(post);
   const handleMenuIsOpen = () => {
     app.setMenuIsOpen(false);
   };
@@ -54,7 +51,6 @@ export const EditPost = () => {
         return tag.trim().toLowerCase();
       });
 
-      // console.log(response);
       updateDocument(
         {
           title,
@@ -169,7 +165,7 @@ export const EditPost = () => {
             <label>
               <span>Visualização da Imagem atual</span>
               <div className={styles.previewImage}>
-                {post && <img src={post.image} alt="" />}
+                {post && <img src={post.image} alt="Imagem do post" />}
               </div>
             </label>
           </div>

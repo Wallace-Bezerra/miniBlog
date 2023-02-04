@@ -39,7 +39,6 @@ export const useFetchDocument = (docCollection, id) => {
       }
     };
     loadData();
-    console.log(document);
   }, [docCollection, id, cancelled]);
 
   //cleanUp

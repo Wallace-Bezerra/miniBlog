@@ -9,16 +9,12 @@ const initialState = {
 const deleteReducer = (state, action) => {
   switch (action.type) {
     case "LOADING":
-      console.log(action, "ação loading");
       return { loading: true, error: null };
     case "DELETED_DOC":
-      console.log(action, "ação deleted");
       return { loading: false, error: null };
     case "ERROR":
-      console.log(action, "ação erro");
       return { loading: false, error: action.payload };
     default:
-      console.log(action, "ação padrao");
       return state;
   }
 };

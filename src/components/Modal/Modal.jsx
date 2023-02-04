@@ -9,7 +9,7 @@ export const Modal = () => {
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <img
-          src="./closedModal.svg"
+          src="/closedModal.svg"
           alt="Icone Closed"
           onClick={() => {
             app.setModalIsOpen(!app.ModalIsOpen);

@@ -71,7 +71,7 @@ export const Search = () => {
                 return (
                   <PostCard
                     id={post.id}
-                    key={`post.id ${"search"}`}
+                    key={`post.id ${Math.random()}`}
                     CreatedDate={post.createdDate}
                     CreatedBy={post.createdBy}
                     title={post.title}

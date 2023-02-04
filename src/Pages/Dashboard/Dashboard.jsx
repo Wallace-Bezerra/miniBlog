@@ -16,7 +16,6 @@ export const Dashboard = () => {
   return (
     <div className={styles.dashboard}>
       <h1>Gerencie seus Posts</h1>
-      {console.log(loading)}
       <div className={styles.PostDashboardContent}>
         {loading && posts?.length > 0 && (
           <>

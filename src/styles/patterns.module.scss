@@ -55,6 +55,24 @@ textarea {
   color: #5a5a5a;
   font-family: "Be Vietnam Pro";
 
+  &::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background-color: #d2c6ec;
+    padding-right: 20px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 9px;
+    padding-right: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    padding-right: 20px;
+    background-color: #9a5de7;
+
+  }
+
   &::placeholder {
     font-family: "Be Vietnam Pro";
     font-weight: 400;
@@ -111,6 +129,7 @@ textarea {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+
       label {
         display: flex;
         flex-direction: column;
@@ -143,7 +162,7 @@ textarea {
           }
         }
 
-        & + label {
+        &+label {
           margin-top: 30px;
         }
       }

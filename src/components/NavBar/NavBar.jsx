@@ -39,9 +39,8 @@ export const NavBar = () => {
         </div>
         <AnimatePresence>
           <motion.ul
-            className={`${styles.listNav} ${
-              app.menuIsOpen ? styles.active : ""
-            }`}
+            className={`${styles.listNav} ${app.menuIsOpen ? styles.active : ""
+              }`}
             initial={false}
             key="menu"
             animate={{ opacity: 1, transition: { duration: 0.8 } }}
@@ -130,8 +129,8 @@ export const NavBar = () => {
         </AnimatePresence>
         <div className={styles.mobile}>
           <img
-            src="./Icon-mobile.svg"
-            alt=""
+            src="/Icon-mobile.svg"
+            alt="Icone menu mobile"
             onClick={() => {
               app.setMenuIsOpen(!app.menuIsOpen);
             }}
