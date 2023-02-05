@@ -1,4 +1,4 @@
-<h1 align="center"> Secret Word </h1>
+<h1 align="center"> MiniBlog </h1>
 
 ## 💻 Projeto
 
