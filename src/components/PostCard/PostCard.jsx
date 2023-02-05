@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import styles from "./PostCard.module.scss";
 
 export const PostCard = ({
@@ -11,18 +12,25 @@ export const PostCard = ({
   id,
 }) => {
   return (
-    <div className={styles.postCard}>
+    <motion.div
+      className={styles.postCard}
+      initial={{ opacity: 0, transition: { duration: 0.4 } }}
+      animate={{
+        opacity: 1,
+        transition: { duration: 0.4, type: "tween" },
+      }}
+    >
       <div className={styles.topPost}>
         <div className={styles.userInfoPost}>
           <span className={styles.userNamePost}>{CreatedBy} </span>
           <span className={styles.userDatePost}>
-            {CreatedDate.formatedDate}
+            {CreatedDate?.formatedDate}
           </span>
           <span className={styles.userDateDetails}>
-            {CreatedDate.dateDifference}
+            {CreatedDate?.dateDifference}
           </span>
           <span className={styles.userDateHoursPost}>
-            {CreatedDate.formatedDateHours}
+            {CreatedDate?.formatedDateHours}
           </span>
         </div>
         <h2>{title}</h2>
@@ -35,7 +43,7 @@ export const PostCard = ({
         <div className={styles.tagsPost}>
           <p>Tags</p>
           <div className={styles.tagContentPost}>
-            {arrayTags.map((tag) => {
+            {arrayTags?.map((tag) => {
               return <span key={`${id} ${tag}`}># {tag}</span>;
             })}
           </div>
@@ -44,6 +52,6 @@ export const PostCard = ({
           <button className={`${styles.btn} ${styles.view}`}>Ver</button>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };

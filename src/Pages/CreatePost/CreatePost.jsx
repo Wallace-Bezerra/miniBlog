@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from "../../hooks/useInsertDocument";
-
+import { useAppContext } from "../../hooks/useAppContext";
+import { Error } from "../../components/Error/Error";
 export const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -12,15 +13,18 @@ export const CreatePost = () => {
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
 
+  const { app } = useAppContext();
+
   const navigate = useNavigate();
 
   const { user } = useAuthValue();
   const { insertDocument, response } = useInsertDocument("posts");
-
+  const handleMenuIsOpen = () => {
+    app.setMenuIsOpen(false);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-
     //validar url da imagem
 
     try {
@@ -41,10 +45,6 @@ export const CreatePost = () => {
       setError("Insira os todos os dados");
     }
 
-    //redirect home page
-    navigate("/");
-
-    console.log(response);
     insertDocument({
       title,
       image,
@@ -53,14 +53,18 @@ export const CreatePost = () => {
       uid: user.uid,
       createdBy: user.displayName,
     });
+    //redirect home page
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
   return (
     <AnimatePresence>
       <motion.section
         className={styles.createPost}
-        initial={{ opacity: 0,}}
-        animate={{ opacity: 1, }}
-        exit={{ opacity: 0,}}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         transition={{ duration: 0.3, damping: 5 }}
       >
         <div className={styles.formCreatePost}>
@@ -79,6 +83,7 @@ export const CreatePost = () => {
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
+                onFocus={handleMenuIsOpen}
                 required
                 placeholder="Adicionar titulo"
               />
@@ -88,11 +93,12 @@ export const CreatePost = () => {
               <input
                 type="text"
                 name="image"
-                // style={{ border: error ? "solid 2px #f32222" : null }}
+                style={{ border: error ? "solid 2px #f32222" : null }}
                 value={image}
                 onChange={(e) => {
                   setImage(e.target.value);
                 }}
+                onFocus={handleMenuIsOpen}
                 required
                 placeholder="Adicionar imagem"
               />
@@ -102,28 +108,17 @@ export const CreatePost = () => {
               <input
                 type="text"
                 name="tags"
-                // style={{ border: error ? "solid 2px #f32222" : null }}
                 value={tags}
                 onChange={(e) => {
                   setTags(e.target.value);
                 }}
+                onFocus={handleMenuIsOpen}
                 required
                 placeholder="Adicione tags"
               />
             </label>
             <label>
               <span>Conteudo</span>
-              {/* <input
-              type="password"
-              name="tags"
-              // style={{ border: error ? "solid 2px #f32222" : null }}
-              value={tags}
-              onChange={(e) => {
-                setTags(e.target.value);
-              }}
-              required
-              placeholder="Adicione tags"
-            /> */}
               <textarea
                 name="content"
                 cols="30"
@@ -132,11 +127,11 @@ export const CreatePost = () => {
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
+                onFocus={handleMenuIsOpen}
                 required
                 placeholder="Escreva seu conteúdo aqui !"
               ></textarea>
             </label>
-            {/* <button className={styles.btn}>Postar</button> */}
             <button
               className={styles.btn}
               type="submit"
@@ -145,23 +140,11 @@ export const CreatePost = () => {
               {response.loading ? "Aguarde..." : "Postar"}
             </button>
             {response.error && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{response.error}</span>
-              </div>
+              <Error error={response.erro} />
             )}
             {error && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{error}</span>
-              </div>
+              <Error error={error} />
             )}
-            {/* {authError && (
-            <div className={styles.error}>
-              <img src="./alert-octagon.svg" alt="icone de alerta" />
-              <span>{authError}</span>
-            </div>
-          )} */}
           </form>
         </div>
       </motion.section>

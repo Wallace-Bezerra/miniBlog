@@ -6,81 +6,18 @@ import {
   orderBy,
   onSnapshot,
   where,
-  QuerySnapshot,
 } from "firebase/firestore";
-import { async } from "@firebase/util";
+import { useGetDateAndHours } from "./useGetDateAndHours";
 
 export const useFetchDocuments = (docCollection, search = null, uid = null) => {
   const [documents, setDocuments] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+  const { getDateAndHours } = useGetDateAndHours();
 
   useEffect(() => {
-    console.log(loading, "usefetch");
   }, [loading]);
   const [cancelled, setCancelled] = useState(false);
-
-  const getDateAndHours = (dateDoc) => {
-    const optionsDate = {
-      date: {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      },
-      hours: {
-        hour: "numeric",
-        minute: "numeric",
-      },
-    };
-
-    const dataAtual = new Date();
-    const date = new Date(dateDoc);
-    const formatedDate = date.toLocaleDateString("pt-BR", optionsDate.date);
-    const formatedDateHours = date.toLocaleTimeString(
-      "pt-BR",
-      optionsDate.hours
-    );
-    const formated = date.toLocaleTimeString("pt-BR", {
-      ...optionsDate.date,
-      ...optionsDate.hours,
-    });
-
-    console.log(formated);
-    console.log(formatedDate);
-    console.log(formatedDateHours);
-
-    let time1 = dateDoc.getTime();
-    let time2 = dataAtual.getTime();
-    let differenceInMilliseconds = time2 - time1;
-    let differenceInDays = differenceInMilliseconds / 86400000;
-    let differenceInHours = differenceInDays * 24;
-    let differenceInMinutes = differenceInHours * 60;
-
-    let differenceInWeeks = differenceInDays / 7;
-    let differenceInMonths = differenceInDays / 30;
-    let differenceInYears = differenceInDays / 365;
-
-    let dateDifference = undefined;
-
-    if (differenceInMinutes < 60) {
-      dateDifference = Math.floor(differenceInMinutes) + " min";
-      if (dateDifference.includes("0 min")) {
-        dateDifference = "Agora";
-      }
-    } else if (differenceInHours < 24) {
-      dateDifference = Math.floor(differenceInHours) + " h";
-    } else if (differenceInDays < 7) {
-      dateDifference = Math.floor(differenceInDays) + " d";
-    } else if (differenceInWeeks < 5) {
-      dateDifference = Math.floor(differenceInWeeks) + " sem";
-    } else if (differenceInMonths < 12 && differenceInMonths > 0) {
-      dateDifference = Math.floor(differenceInMonths) + " m";
-    } else {
-      dateDifference = Math.floor(differenceInYears) + " a";
-    }
-    // console.log(dateDifference, differenceInMonths, differenceInWeeks);
-    return { formatedDate, formatedDateHours, dateDifference };
-  };
 
   useEffect(() => {
     const loadData = async () => {
@@ -128,17 +65,12 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
           );
         });
       } catch (error) {
-        console.log(error.message);
         setError(error.message);
-      } finally {
-        setLoading(false);
-        // setTimeout(() => {
-        //   setLoading(false);
-        // }, 3000);
       }
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     };
-
-    console.log("Uid", documents);
     loadData();
   }, [docCollection, search, uid, cancelled]);
 

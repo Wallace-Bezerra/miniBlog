@@ -11,7 +11,7 @@
 }
 
 :root {
-  // font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -19,7 +19,6 @@
 }
 
 button {
-  // font-family: "Be Vietnam Pro", sans-serif;
   border: none;
   cursor: pointer;
 }
@@ -27,7 +26,20 @@ button {
 body {
   background: #404258;
   min-height: 100vh;
-  // overflow: overlay;
+}
+
+.App {
+  min-height: 100vh;
+  gap: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @include responsive(1080px) {
+    padding-top: 115px;
+  }
+  @include responsive(700px) {
+    gap: 40px;
+  }
 }
 
 .App {

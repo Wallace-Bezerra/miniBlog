@@ -55,6 +55,24 @@ textarea {
   color: #5a5a5a;
   font-family: "Be Vietnam Pro";
 
+  &::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background-color: #d2c6ec;
+    padding-right: 20px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 9px;
+    padding-right: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    padding-right: 20px;
+    background-color: #9a5de7;
+
+  }
+
   &::placeholder {
     font-family: "Be Vietnam Pro";
     font-weight: 400;
@@ -68,30 +86,6 @@ textarea {
   }
 }
 
-.error {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 12px 17px;
-  height: 44px;
-  background: #e14747;
-  border-radius: 6px;
-  color: #ffffff;
-  filter: drop-shadow(0px 0px 3px #ea4444);
-  margin-top: 30px;
-  animation: slide 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(-100px);
-  }
-
-  100% {
-    transform: translateX(0px);
-  }
-}
 
 .signUp,
 .login,
@@ -135,7 +129,6 @@ textarea {
       flex-direction: column;
       align-items: flex-start;
 
-      // gap: 30px;
       label {
         display: flex;
         flex-direction: column;
@@ -159,7 +152,6 @@ textarea {
             font-weight: 500;
             font-size: 15px;
             line-height: 150%;
-            // color: #5a5a5a;
             font-family: "Be Vietnam Pro";
             color: rgba(0, 0, 0, 0.5);
           }
@@ -183,4 +175,14 @@ textarea {
       }
     }
   }
+}
+
+@keyframes skeleton {
+  to {
+    opacity: 0.5;
+  }
+}
+
+.skeleton {
+  animation: skeleton 1s linear infinite alternate;
 }

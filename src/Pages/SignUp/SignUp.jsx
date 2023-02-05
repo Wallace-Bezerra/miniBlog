@@ -1,27 +1,26 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./SignUp.module.scss";
-// import patterns from "../../styles/patterns.module.scss";
+import { useAppContext } from "../../hooks/useAppContext";
+import { Error } from "../../components/Error/Error";
 export const SignUp = () => {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate();
-
+  const { app } = useAppContext();
   const [error, setError] = useState("");
   const {
-    auth,
     createUser,
     error: authError,
     setError: setAuthError,
     loading,
   } = useAuthentication();
-
+  const handleMenuIsOpen = () => {
+    app.setMenuIsOpen(false);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -36,15 +35,11 @@ export const SignUp = () => {
       setError("As senhas devem ser iguais!");
       return;
     }
-    console.log(user);
 
     const response = await createUser(user);
-    if (response) {
-      alert("Cadastrado!");
-    }
-    console.log(response);
+    app.setModalIsOpen(true);
   };
-  // console.log(patterns);
+
   return (
     <AnimatePresence>
       <motion.section
@@ -67,6 +62,7 @@ export const SignUp = () => {
                 type="text"
                 name="displayName"
                 value={displayName}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setDisplayName(e.target.value);
                 }}
@@ -80,6 +76,7 @@ export const SignUp = () => {
                 type="email"
                 name="email"
                 value={email}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -94,6 +91,7 @@ export const SignUp = () => {
                 name="password"
                 style={{ border: error ? "solid 2px #f32222" : null }}
                 value={password}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -108,6 +106,7 @@ export const SignUp = () => {
                 name="confirmPassword"
                 style={{ border: error ? "solid 2px #f32222" : null }}
                 value={confirmPassword}
+                onFocus={handleMenuIsOpen}
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);
                 }}
@@ -118,18 +117,8 @@ export const SignUp = () => {
             <button className={styles.btn} type="submit" disabled={loading}>
               {loading ? "Aguarde..." : "Cadastrar"}
             </button>
-            {error && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{error}</span>
-              </div>
-            )}
-            {authError && (
-              <div className={styles.error}>
-                <img src="/alert-octagon.svg" alt="icone de alerta" />
-                <span>{authError}</span>
-              </div>
-            )}
+            {error && <Error error={error} />}
+            {authError && <Error error={authError} />}
           </form>
         </div>
 
@@ -141,13 +130,7 @@ export const SignUp = () => {
             transition: { type: "spring", duration: 8, repeat: Infinity },
           }}
         >
-          <img src="/mockup.png" alt="" />
-          {/* <div className={styles.iconBlue}>
-          <img src="/Icon_blue.svg" alt="" />
-        </div>
-        <div className={styles.iconYellow}>
-          <img src="/Icon_yellow.svg" alt="" />
-        </div> */}
+          <img src="/mockup.png" alt="Imagem mockup" />
         </motion.div>
       </motion.section>
     </AnimatePresence>

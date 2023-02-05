@@ -6,6 +6,7 @@
   grid-template-columns: 1fr 1fr;
   margin: 0 auto;
   padding-inline: 20px;
+  margin-bottom: 50px;
   justify-items: space-between;
 
   .title {
@@ -14,7 +15,7 @@
     h1 {
       color: white;
       margin-bottom: 20px;
-      font-weight: 700;
+      font-weight: 500;
       font-size: 36px;
       line-height: 46px;
     }
@@ -97,7 +98,6 @@
     }
 
     .imageAbout {
-
       .iconGit,
       .iconLinkedin {
         width: 120px;

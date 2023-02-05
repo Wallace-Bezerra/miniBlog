@@ -1,7 +1,11 @@
 @import "../../styles/patterns.module.scss";
-
+@import "../../styles/mixins.scss";
 .createPost {
   justify-content: center;
+  max-width: 550px;
+  .subtitle {
+    max-width: 300px;
+  }
   form {
     max-width: 495px;
     width: 100%;
@@ -17,6 +21,17 @@
     }
     .btn {
       align-self: flex-end;
+    }
+  }
+  @include responsive(600px) {
+    margin-top: 0px;
+    .title {
+      font-size: 28px;
+    }
+    .subtitle {
+      margin-bottom: 35px;
+      font-size: 20px;
+      line-height: 29px;
     }
   }
 }

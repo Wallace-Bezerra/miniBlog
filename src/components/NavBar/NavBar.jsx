@@ -1,29 +1,22 @@
-import { useEffect, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./NavBar.module.scss";
-import { useMenuIsOpen } from "../../hooks/useMenuIsOpen";
+import { useAppContext } from "../../hooks/useAppContext";
 
 export const NavBar = () => {
-  const { menu } = useMenuIsOpen();
-  // const [menuIsOpen, setMenuIsOpen] = useState(false);
-
+  const { app } = useAppContext();
   const { logout } = useAuthentication();
   const { user } = useAuthValue();
-  useEffect(() => {
-    console.log(menu.menuIsOpen);
-  }, [menu.menuIsOpen]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // let mediaQuery = window.matchMedia("(min-width: 1080px)");
     window.addEventListener("resize", updateScreen);
-
     function updateScreen() {
-      // console.log("resized to: ", window.innerWidth);
       if (window.innerWidth > 1080) {
-        menu.setMenuIsOpen(false);
+        app.setMenuIsOpen(false);
       }
     }
     return () => {
@@ -31,38 +24,23 @@ export const NavBar = () => {
     };
   }, [window.innerWidth]);
 
-  const listVariant = {
-    open: {
-      clipPath: "inset(0% 0% 0% 0% round 10px)",
-      transition: {
-        type: "spring",
-        bounce: 0,
-        duration: 0.7,
-        delayChildren: 0.05,
-        staggerChildren: 0.05,
-      }
-    },
-    closed: {
-      clipPath: "inset(10% 50% 90% 50% round 30px)",
-      transition: {
-        type: "spring",
-        bounce: 0,
-        duration: 0.6,
-        delay: 0.5,
-      }
-    }
-  }
   return (
     <header>
       <nav className={styles.nav}>
         <div className={styles.logo}>
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             Mini<span>Blog</span>
           </Link>
         </div>
         <AnimatePresence>
-          <motion.ul className={`${styles.listNav} ${menu.menuIsOpen ? styles.active : ""}`}
-            // variants={listVariant}
+          <motion.ul
+            className={`${styles.listNav} ${app.menuIsOpen ? styles.active : ""
+              }`}
             initial={false}
             key="menu"
             animate={{ opacity: 1, transition: { duration: 0.8 } }}
@@ -71,6 +49,9 @@ export const NavBar = () => {
             <li>
               <NavLink
                 to="/"
+                onClick={() => {
+                  navigate("/");
+                }}
                 className={({ isActive }) => (isActive ? styles.active : null)}
               >
                 Home
@@ -146,14 +127,12 @@ export const NavBar = () => {
             )}
           </motion.ul>
         </AnimatePresence>
-        {/* <div className={`${styles.mobile} ${!isOpen ? styles.active : null}`}>
-          <img */}
         <div className={styles.mobile}>
           <img
-            src="./Icon-mobile.svg"
-            alt=""
+            src="/Icon-mobile.svg"
+            alt="Icone menu mobile"
             onClick={() => {
-              menu.setMenuIsOpen(!menu.menuIsOpen);
+              app.setMenuIsOpen(!app.menuIsOpen);
             }}
           />
         </div>

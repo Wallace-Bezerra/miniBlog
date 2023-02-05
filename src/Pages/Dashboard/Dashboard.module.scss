@@ -5,7 +5,7 @@
   min-height: 780px;
   background-color: #404258;
   height: 100%;
-  // padding-block: 50px;
+  padding-inline: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,26 +27,34 @@
     padding-inline: 20px;
     width: 100%;
     max-width: 1280px;
-
-    h1 {
-      font-weight: 500;
-      font-size: 36px;
-      line-height: 15px;
-      margin-bottom: 30px;
-    }
-
-    p {
-      font-weight: 500;
-      font-size: 22px;
-      line-height: 28px;
-      letter-spacing: 0.0607778px;
-      color: #dbdbdb;
-      max-width: 340px;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      padding: 14px 20px;
+    .leftArea {
+      display: flex;
+      flex-direction: column;
+      h2 {
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 26px;
+        color: #fff;
+        margin-bottom: 27px;
+      }
+      p {
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 28px;
+        letter-spacing: 0.0607778px;
+        color: #dbdbdb;
+        max-width: 340px;
+        margin-bottom: 30px;
+      }
+      img {
+        margin-top: 65px;
+        width: 379px;
+        height: 234px;
+        border-radius: 20px;
+      }
+      .btn {
+        padding: 14px 20px;
+      }
     }
   }
 
@@ -59,5 +67,48 @@
     width: 100%;
   }
 
-  @include responsive(600px) {}
+  @include responsive(1080px) {
+    gap: 35px;
+
+    h1 {
+      margin: 20px;
+    }
+
+    .dashboardNoPosts {
+      margin: 0 auto;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+      .leftArea {
+        img {
+          display: none;
+        }
+      }
+    }
+
+    .image {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  @include responsive(480px) {
+    gap: 22px;
+    .dashboardNoPosts {
+      .leftArea {
+        h2 {
+          font-size: 24px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-top: 15px;
+      line-height: 32px;
+      margin-bottom: 24px;
+    }
+  }
 }

@@ -4,24 +4,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { PostCard } from "../../components/PostCard/PostCard";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useQuery } from "../../hooks/useQuery";
+import { PostCardSkeleton } from "../../components/PostCard/PostCardSkeleton";
 
 export const Search = () => {
   const query = useQuery();
-  const search = query.get("q");
-  const {
-    documents: posts,
-    error,
-    loading,
-  } = useFetchDocuments("posts", search);
+  const search = query.get("q").toLocaleLowerCase();
+  const { documents: posts, loading } = useFetchDocuments("posts", search);
   return (
     <AnimatePresence>
       <motion.div
         className={styles.search}
-        initial={{ opacity: 0, transition: { duration: 0.4 } }}
-        animate={{
-          opacity: 1,
-          transition: { duration: 0.6 },
-        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, damping: 5 }}
       >
         {posts && posts.length === 0 && (
           <div className={styles.notFoundSearch}>
@@ -38,6 +33,7 @@ export const Search = () => {
             </div>
           </div>
         )}
+
         {posts && posts.length > 0 && (
           <>
             <div className={styles.resultSearch}>
@@ -52,39 +48,39 @@ export const Search = () => {
                   <path
                     d="M18.9167 8H2"
                     stroke="#F0F9FF"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M8 15L1 8L8 1"
                     stroke="#F0F9FF"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </Link>
-
               <h1>
                 Resultados da busca por <span>{search}</span>{" "}
               </h1>
             </div>
-
-            {posts.map((post) => {
-              return (
-                <PostCard
-                  key={post.id}
-                  id={post.id}
-                  CreatedDate={post.createdDate}
-                  CreatedBy={post.createdBy}
-                  title={post.title}
-                  content={post.content}
-                  image={post.image}
-                  arrayTags={post.arrayTags}
-                />
-              );
-            })}
+            {loading && <PostCardSkeleton />}
+            {!loading &&
+              posts?.map((post) => {
+                return (
+                  <PostCard
+                    id={post.id}
+                    key={`post.id ${Math.random()}`}
+                    CreatedDate={post.createdDate}
+                    CreatedBy={post.createdBy}
+                    title={post.title}
+                    content={post.content}
+                    image={post.image}
+                    arrayTags={post.arrayTags}
+                  />
+                );
+              })}
           </>
         )}
       </motion.div>

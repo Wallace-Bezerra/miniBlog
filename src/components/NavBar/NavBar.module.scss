@@ -77,12 +77,16 @@ header {
   }
 
   @include responsive(1080px) {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
     .listNav {
       opacity: 0;
       pointer-events: none;
       position: absolute;
       display: none;
-      animation: menu .8s cubic-bezier(0.075, 0.82, 0.165, 1);
+      animation: menu 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
 
       li {
         a {
@@ -90,7 +94,6 @@ header {
             background-color: transparent;
             position: relative;
             padding-block: 0px;
-
 
             &::after {
               content: "";
@@ -111,6 +114,8 @@ header {
     .mobile {
       display: flex;
     }
+  }
+  @include responsive(480px) {
   }
 
   @keyframes menu {

@@ -1,13 +1,18 @@
 @import "../../styles/patterns.module.scss";
+@import "../../styles/mixins.scss";
 
 .editPost {
   justify-content: center;
+
   .formEditPost {
     max-width: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+
     form {
       flex-direction: row;
-      justify-content: space-between;
+      gap: 115px;
       width: 100%;
 
       .inputs {
@@ -15,28 +20,85 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+
         label {
           width: 100%;
+
           input {
             width: 100%;
           }
+
           textarea {
             width: 100%;
             resize: none;
           }
         }
+
         .btn {
           align-self: flex-end;
         }
       }
+
       .previewImage {
+        max-height: 500px;
+
         img {
           width: 100%;
           object-fit: cover;
           object-position: center;
-          max-width: 496px;
-          height: 600px;
           border-radius: 8px;
+          aspect-ratio: auto 1 / 1;
+          height: 100%;
+        }
+
+        .skeletonImg {
+          display: block;
+          max-width: 400px;
+          width: 100%;
+          height: 300px;
+          background-color: #c1d0dd;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+
+  @include responsive(1080px) {
+    .formEditPost {
+      max-width: 494px;
+
+      .formInfo {
+        .title {
+          margin: 0 auto;
+        }
+
+        .subtitle {
+          margin-bottom: 40px;
+        }
+      }
+
+      form {
+        flex-direction: column-reverse;
+        margin: 0 auto;
+        gap: 40px;
+        align-items: center;
+      }
+    }
+  }
+
+  @include responsive(500px) {
+    margin-top: 0px;
+
+    .formEditPost {
+      .formInfo {
+        .title {
+          font-size: 28px;
+        }
+
+        .subtitle {
+          max-width: 279px;
+          font-size: 18px;
+          line-height: 26px;
         }
       }
     }

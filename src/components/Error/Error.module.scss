@@ -1,0 +1,24 @@
+@import "../../styles/mixins.scss";
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px 17px;
+  background: #e14747;
+  border-radius: 6px;
+  color: #ffffff;
+  filter: drop-shadow(0px 0px 3px #ea4444);
+  margin-top: 30px;
+  animation: slide 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
