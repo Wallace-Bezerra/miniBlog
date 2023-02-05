@@ -11,9 +11,6 @@
   filter: drop-shadow(0px 0px 3px #ea4444);
   margin-top: 30px;
   animation: slide 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  @include responsive(520px) {
-    // padding-block: 32px;
-  }
 }
 
 @keyframes slide {

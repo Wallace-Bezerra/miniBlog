@@ -21,8 +21,8 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
 
   useEffect(() => {
     const loadData = async () => {
-      if (cancelled) return;
       setLoading(true);
+      // if (cancelled) return;
       setError(false);
       const collectionRef = await collection(db, docCollection);
       try {

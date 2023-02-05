@@ -81,4 +81,25 @@
       }
     }
   }
+
+  @include responsive(845px) {
+    flex-direction: column-reverse;
+    gap: 30px;
+
+    .infoText {
+      h1 {
+        font-size: 105px;
+        margin-bottom: 10px;
+      }
+
+      P {
+        max-width: 340px;
+      }
+    }
+
+    .box {
+      width: 268px;
+      height: 230px;
+    }
+  }
 }

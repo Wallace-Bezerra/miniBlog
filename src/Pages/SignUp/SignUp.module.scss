@@ -73,4 +73,12 @@
       }
     }
   }
+
+  @include responsive(400px) {
+    .formSignUp {
+      .title {
+        font-size: 26px;
+      }
+    }
+  }
 }

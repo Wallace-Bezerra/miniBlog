@@ -41,7 +41,6 @@ export const Home = () => {
           transition={{ duration: 0.4 }}
         >
           <h1>Veja os últimos posts da comunidade</h1>
-
           <form onSubmit={handleSubmit} className={styles.search}>
             <input
               type="text"
